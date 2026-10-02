@@ -143,6 +143,7 @@ jobs:
 
           payload = json.loads(
               (Path(os.environ["RUNNER_TEMP"]) / "analyzer-output.json").read_text()
+          )
           assert payload["sentence"] == "これはテストです。"
           assert payload["bunsetsu"]
           assert payload["tokens"]
