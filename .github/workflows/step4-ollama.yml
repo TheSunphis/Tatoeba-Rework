@@ -8,9 +8,9 @@ on:
         required: true
         default: 'qwen2.5:7b'
       sentence:
-        description: 'Single sentence to enrich (leave empty to use the pack file)'
+        description: 'Single sentence to enrich (leave EMPTY to enrich the pack file)'
         required: false
-        default: '今は、それについてコメントしたくない。'
+        default: ''
       pack_file:
         description: 'Pack file (used when sentence is empty), path from repo root'
         required: false
