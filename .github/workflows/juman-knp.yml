@@ -1,0 +1,161 @@
+name: jumanpp-knp
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/juman-knp.yml'
+      - 'pipeline/Japanese/juman/**'
+  pull_request:
+    paths:
+      - '.github/workflows/juman-knp.yml'
+      - 'pipeline/Japanese/juman/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jumanpp-knp-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  JUMANPP_VERSION: 2.0.0-rc4
+  JUMANPP_ARCHIVE: jumanpp-2.0.0-rc4.tar.xz
+  KNP_COMMIT: bc4cef188669f88cdeb590fe7afb1021ce2ae481
+  # Increment this when the upstream "latest" KNP dictionary is updated.
+  KNP_DICTIONARY_CACHE_VERSION: '1'
+
+jobs:
+  build-and-test:
+    name: Build and validate Juman++ / KNP
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pipeline/Japanese/juman/requirements.txt
+
+      - name: Install build and runtime dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends \
+            autoconf automake build-essential cmake curl git libtool \
+            libprotobuf-dev pkg-config protobuf-compiler unzip zlib1g-dev
+
+      # actions/cache runs as the runner user. Create user-owned placeholders so
+      # it can restore files below the otherwise root-owned /usr/local tree.
+      - name: Prepare installation paths for cache restore
+        run: |
+          sudo mkdir -p \
+            /usr/local/libexec/jumanpp \
+            /usr/local/libexec/knp \
+            /usr/local/share/knp \
+            /usr/local/etc
+          sudo chown -R "$USER:$(id -gn)" \
+            /usr/local/libexec/jumanpp \
+            /usr/local/libexec/knp \
+            /usr/local/share/knp
+          sudo install -o "$USER" -g "$(id -gn)" -m 0755 /dev/null /usr/local/bin/jumanpp
+          sudo install -o "$USER" -g "$(id -gn)" -m 0755 /dev/null /usr/local/bin/knp
+          sudo install -o "$USER" -g "$(id -gn)" -m 0644 /dev/null /usr/local/etc/knprc
+
+      - name: Restore compiled tools and dictionaries
+        id: juman-knp-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            /usr/local/bin/jumanpp
+            /usr/local/bin/knp
+            /usr/local/libexec/jumanpp
+            /usr/local/libexec/knp
+            /usr/local/share/knp
+            /usr/local/etc/knprc
+          key: ${{ runner.os }}-${{ runner.arch }}-jumanpp-${{ env.JUMANPP_VERSION }}-knp-${{ env.KNP_COMMIT }}-dict-${{ env.KNP_DICTIONARY_CACHE_VERSION }}
+
+      - name: Build and install Juman++
+        if: steps.juman-knp-cache.outputs.cache-hit != 'true'
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl --fail --location --retry 3 --output "$JUMANPP_ARCHIVE" \
+            "https://github.com/ku-nlp/jumanpp/releases/download/v${JUMANPP_VERSION}/${JUMANPP_ARCHIVE}"
+          tar --extract --file "$JUMANPP_ARCHIVE"
+          cmake -S "jumanpp-${JUMANPP_VERSION}" -B jumanpp-build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=/usr/local \
+            -DJPP_ENABLE_TESTS=OFF
+          cmake --build jumanpp-build --parallel "$(nproc)"
+          sudo cmake --install jumanpp-build
+
+      - name: Build and install KNP with its dictionary
+        if: steps.juman-knp-cache.outputs.cache-hit != 'true'
+        working-directory: ${{ runner.temp }}
+        run: |
+          git clone https://github.com/ku-nlp/knp.git knp
+          git -C knp checkout --detach "$KNP_COMMIT"
+
+          curl --fail --location --retry 3 \
+            --output knp-dict-latest-bin.zip \
+            http://lotus.kuee.kyoto-u.ac.jp/nl-resource/knp/dict/latest/knp-dict-latest-bin.zip
+          unzip -q knp-dict-latest-bin.zip
+          cp -a dict-bin/. knp/dict/
+
+          cd knp
+          ./autogen.sh
+          ./configure --prefix=/usr/local --with-included-juman
+          make --jobs="$(nproc)"
+          sudo make install
+
+      - name: Validate installation with a test parse
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -x /usr/local/bin/jumanpp
+          test -x /usr/local/bin/knp
+          jumanpp --version
+          knp -v
+
+          printf '%s\n' 'これはテストです。' | jumanpp | knp > "$RUNNER_TEMP/knp-parse.txt"
+          cat "$RUNNER_TEMP/knp-parse.txt"
+          grep -q '^EOS$' "$RUNNER_TEMP/knp-parse.txt"
+
+      - name: Install Python analyzer dependencies
+        run: |
+          # jamdict-data's legacy setup script imports wheel while building.
+          python -m pip install wheel
+          python -m pip install -r pipeline/Japanese/juman/requirements.txt
+
+      - name: Smoke-test analyzer CLI
+        run: |
+          python pipeline/Japanese/juman/analyzer.py 'これはテストです。' \
+            > "$RUNNER_TEMP/analyzer-output.json"
+          cat "$RUNNER_TEMP/analyzer-output.json"
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          payload = json.loads(
+              (Path(os.environ["RUNNER_TEMP"]) / "analyzer-output.json").read_text()
+          assert payload["sentence"] == "これはテストです。"
+          assert payload["bunsetsu"]
+          assert payload["tokens"]
+          assert all(
+              {
+                  "surface",
+                  "reading",
+                  "lemma",
+                  "pos",
+                  "english_glosses",
+                  "kanji_breakdown",
+              }
+              <= token.keys()
+              for token in payload["tokens"]
+          )
+          PY

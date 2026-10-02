@@ -1,0 +1,3 @@
+rhoknp==1.8.0
+jamdict==0.1a11.post2
+jamdict-data==1.5
