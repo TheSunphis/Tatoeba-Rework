@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "source": "Tatoeba sentence #8568949 (rank 5000, freq_score 5.612)",
+    "translation": "I'd prefer not to comment on that now. / I don't want to comment on that right now.",
+    "pipeline": "UniDic (fugashi) -> rule-based chunk merger -> JMdict_e lookup",
+    "generated": "2026-10-02",
+    "note": "everyday conversational Japanese · rank 5,000 / 232,778"
+  },
+  "sentence": "今は、それについてコメントしたくない。",
+  "reading": "いまは、それについてこめんとしたくない。",
+  "stats": {
+    "rawMorphemes": 12,
+    "learnerChunks": 8,
+    "multiMorphemeChunks": 2,
+    "jmdictHits": "6/6"
+  },
+  "chunks": [
+    {
+      "surface": "今",
+      "reading": "いま",
+      "type": "noun",
+      "dictionaryForm": "今",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "now; the present time",
+      "common": true
+    },
+    {
+      "surface": "は",
+      "reading": "は",
+      "type": "particle",
+      "dictionaryForm": "は",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates sentence topic; indicates contrast with another option (stated or unstated)",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "それ",
+      "reading": "それ",
+      "type": "pronoun",
+      "dictionaryForm": "それ",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "that; it",
+      "common": true
+    },
+    {
+      "surface": "について",
+      "reading": "について",
+      "type": "grammar point",
+      "dictionaryForm": "について",
+      "conjugation": null,
+      "grammarPoint": "〜について (about, regarding)",
+      "breakdown": [
+        {
+          "surface": "に",
+          "lemma": "に",
+          "pos": "助詞,格助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "つい",
+          "lemma": "つく",
+          "pos": "動詞,一般,*,*",
+          "form": "連用形-イ音便"
+        },
+        {
+          "surface": "て",
+          "lemma": "て",
+          "pos": "助詞,接続助詞,*,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "about; on",
+      "common": true
+    },
+    {
+      "surface": "コメント",
+      "reading": "こめんと",
+      "type": "noun",
+      "dictionaryForm": "コメント",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "comment",
+      "common": true
+    },
+    {
+      "surface": "したくない",
+      "reading": "したくない",
+      "type": "verb",
+      "dictionaryForm": "する",
+      "conjugation": "want to, negative",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "し",
+          "lemma": "する",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "たく",
+          "lemma": "たい",
+          "pos": "助動詞,*,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "ない",
+          "lemma": "無い",
+          "pos": "形容詞,非自立可能,*,*",
+          "form": "終止形-一般"
+        }
+      ],
+      "gloss": "to do; to carry out",
+      "common": true
+    },
+    {
+      "surface": "。",
+      "reading": "。",
+      "type": "punctuation",
+      "dictionaryForm": "。",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    }
+  ]
+}

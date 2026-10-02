@@ -1,0 +1,269 @@
+#!/usr/bin/env python3
+"""Build a self-contained interactive HTML explorer from largest_sentence_cards.json.
+
+Usage:  python build_site.py
+Output: sentence_explorer.html  (no external resources - works offline)
+"""
+
+import json
+import sys
+
+SRC = sys.argv[1] if len(sys.argv) > 1 else 'largest_sentence_cards.json'
+OUT = sys.argv[2] if len(sys.argv) > 2 else 'sentence_explorer.html'
+
+data = json.load(open(SRC, encoding='utf-8'))
+chunks = data['chunks']
+
+# ---- machine-view morphemes (expand breakdowns; synthesize for singles) ----
+raw = []
+for i, c in enumerate(chunks):
+    if c['breakdown']:
+        for m in c['breakdown']:
+            raw.append({'surface': m['surface'], 'lemma': m['lemma'], 'pos': m['pos'],
+                        'form': m['form'], 'chunkIndex': i})
+    else:
+        raw.append({'surface': c['surface'], 'lemma': c['dictionaryForm'], 'pos': c['type'],
+                    'form': c['conjugation'], 'chunkIndex': i, 'synth': True})
+
+payload = {
+    'meta': data['meta'],
+    'sentence': data['sentence'],
+    'stats': data['stats'],
+    'chunks': chunks,
+    'raw': raw,
+}
+data_json = json.dumps(payload, ensure_ascii=False).replace('</', '<\\/')
+stats = data['stats']
+
+HTML = r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sentence Explorer — Japanese learner cards</title>
+<style>
+  :root { --bg:#f6f7fb; --card:#ffffff; --ink:#1e293b; --muted:#64748b; --line:#e2e8f0; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,"Noto Sans JP",sans-serif;
+         background:var(--bg); color:var(--ink); padding-bottom:8px; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 20px 16px 340px; }
+  h1 { font-size: 22px; margin: 8px 0 4px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+  .badges { display:flex; flex-wrap:wrap; gap:8px; margin: 10px 0 16px; }
+  .badge { background: var(--card); border:1px solid var(--line); border-radius: 999px;
+           padding: 4px 12px; font-size: 12.5px; color: var(--ink); }
+  .badge b { color:#0f172a; }
+  .translation { background: var(--card); border:1px solid var(--line); border-radius: 14px;
+                 padding: 14px 18px; font-size: 15px; line-height: 1.55; margin-bottom: 16px; }
+  .translation .lbl { font-size: 11px; letter-spacing:.12em; text-transform: uppercase; color: var(--muted); display:block; margin-bottom:4px; }
+  .toolbar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin: 6px 0 10px; position: sticky; top: 8px; z-index: 5; }
+  .toolbar button { border:1px solid var(--line); background: var(--card); color: var(--ink);
+      padding: 8px 14px; border-radius: 10px; font-size: 13.5px; cursor: pointer; font-weight:600; }
+  .toolbar button.active { background: #1e293b; color:#fff; border-color:#1e293b; }
+  .legend { font-size: 11.5px; color: var(--muted); display:flex; flex-wrap:wrap; gap:10px; margin: 0 0 12px; }
+  .legend span { display:inline-flex; align-items:center; gap:4px; }
+  .dot { width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .sentence { background: var(--card); border:1px solid var(--line); border-radius: 14px;
+              padding: 16px 18px; margin-bottom: 12px; line-height: 2.5; }
+  .chip { display:inline-flex; flex-direction:column; align-items:center; margin: 3px 2px;
+          padding: 3px 7px 2px; border-radius: 9px; border: 1px solid var(--line);
+          border-bottom: 3px solid var(--c); background:#fff; cursor:pointer; vertical-align: bottom; }
+  .chip:hover { filter: brightness(.965); box-shadow: 0 1px 6px rgba(15,23,42,.12); }
+  .chip.sel { background: color-mix(in srgb, var(--c) 16%, #fff); box-shadow: 0 0 0 2px var(--c); }
+  .chip .s { font-size: 18px; line-height: 1.3; }
+  .chip .r { font-size: 10px; color: var(--muted); line-height: 1.2; }
+  .chip.gp { background: color-mix(in srgb, var(--c) 12%, #fff); }
+  .chip.gp .s::after { content: " ★"; font-size: 12px; }
+  .punct { font-size: 18px; margin: 0 1px; color: var(--ink); }
+  .details { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+             background: var(--card); border-top: 1px solid var(--line);
+             box-shadow: 0 -6px 24px rgba(15,23,42,.10); padding: 14px 16px 10px; }
+  .details .inner { max-width: 880px; margin: 0 auto; }
+  .hint { color: var(--muted); font-size: 14px; text-align:center; padding: 8px 0 4px; }
+  .dhead { display:flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .dhead .big { font-size: 30px; font-weight: 700; }
+  .dhead .read { font-size: 15px; color: var(--muted); }
+  .typepill { display:inline-block; padding: 2px 10px; border-radius: 999px; color:#fff;
+              font-size: 11.5px; font-weight: 700; letter-spacing: .03em; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px 18px; margin-top: 8px; }
+  .kv .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  .kv .v { font-size: 14.5px; }
+  .gloss { font-size: 16px; margin-top: 6px; }
+  .gpbanner { margin-top: 8px; background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c;
+              border-radius: 10px; padding: 8px 12px; font-size: 14px; font-weight: 600; }
+  table.bt { border-collapse: collapse; margin-top: 10px; width: 100%; }
+  table.bt th, table.bt td { border-bottom: 1px solid var(--line); padding: 4px 10px 4px 0;
+                             font-size: 13px; text-align: left; }
+  table.bt th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+  table.bt td.jp { font-size: 15px; }
+  .part-of { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  footer { color: var(--muted); font-size: 11.5px; margin-top: 22px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🇯🇵 Sentence Explorer</h1>
+  <div class="sub" id="src"></div>
+  <div class="badges" id="badges"></div>
+  <div class="translation"><span class="lbl">English (Tatoeba)</span><span id="en"></span></div>
+  <div class="toolbar">
+    <button id="btnL">🎓 Learner view (<span id="nL"></span> chunks)</button>
+    <button id="btnR">🔧 Machine view (<span id="nR"></span> morphemes)</button>
+  </div>
+  <div class="legend" id="legend"></div>
+  <div id="content"></div>
+  <footer id="foot"></footer>
+</div>
+
+<div class="details"><div class="inner" id="details">
+  <p class="hint">👆 click any segment above to see its card</p>
+</div></div>
+
+<script>
+const DATA = __DATA__;
+const T = DATA.stats;
+
+const TYPE_COLOR = {
+  'verb':'#2563eb','noun':'#059669','pronoun':'#0d9488','particle':'#64748b',
+  'adverb':'#7c3aed','i-adjective':'#d97706','na-adjective':'#d97706',
+  'pre-noun adjectival':'#0891b2','grammar point':'#dc2626','auxiliary':'#a16207',
+  'conjunction':'#db2777','interjection':'#ea580c','punctuation':'#cbd5e1',
+  'prefix':'#64748b','suffix':'#64748b'
+};
+const POS_COLOR = {
+  '名詞':'#059669','代名詞':'#0d9488','動詞':'#2563eb','形容詞':'#d97706','形状詞':'#d97706',
+  '副詞':'#7c3aed','連体詞':'#0891b2','助詞':'#64748b','助動詞':'#a16207','接頭辞':'#64748b',
+  '接尾辞':'#64748b','接続詞':'#db2777','感動詞':'#ea580c','補助記号':'#cbd5e1','記号':'#cbd5e1'
+};
+const PUNCT_RE = /^[、。！？…「」『』（）・～：；]/;
+
+// ---------- header ----------
+document.getElementById('src').textContent = DATA.meta.source + ' · ' + DATA.meta.pipeline;
+document.getElementById('en').textContent = DATA.meta.translation;
+document.getElementById('nL').textContent = T.learnerChunks;
+document.getElementById('nR').textContent = T.rawMorphemes;
+document.getElementById('badges').innerHTML =
+  `<span class="badge"><b>${T.rawMorphemes}</b> raw morphemes</span>` +
+  `<span class="badge">→ <b>${T.learnerChunks}</b> learner chunks (<b>${T.multiMorphemeChunks}</b> merged)</span>` +
+  `<span class="badge">JMdict glosses <b>${T.jmdictHits}</b></span>` +
+  `<span class="badge">longest sentence in the corpus · <b>rank 232,778 / 232,778</b> (least everyday)</span>`;
+document.getElementById('foot').innerHTML =
+  'Data: Tatoeba.org (CC BY 2.0 FR, some CC0) · dictionary: JMdict (EDRDG) · ' +
+  'tokenized with UniDic · built ' + (DATA.meta.generated || '');
+
+const LEGEND = [['grammar point','grammar point ★'],['verb','verb'],['noun','noun'],
+  ['particle','particle'],['pronoun','pronoun'],['i-adjective','adjective'],
+  ['adverb','adverb'],['pre-noun adjectival','this/that + noun'],['auxiliary','auxiliary']];
+document.getElementById('legend').innerHTML = LEGEND.map(([t,l]) =>
+  `<span><i class="dot" style="background:${TYPE_COLOR[t]}"></i>${l}</span>`).join('');
+
+// ---------- sentence grouping (split at 。) ----------
+function sentencesOf(items, isPunct) {
+  const sents = [[]];
+  for (const it of items) {
+    sents[sents.length-1].push(it);
+    if (isPunct(it) && /[。！？]/.test(it.surface || it.morph.surface)) sents.push([]);
+  }
+  return sents.filter(s => s.length);
+}
+
+function chipHTML(inner, color, cls, onclick) {
+  return `<button class="chip ${cls}" style="--c:${color}" onclick="${onclick}">${inner}</button>`;
+}
+
+// ---------- learner view ----------
+let view = 'learner';
+function renderLearner() {
+  const isP = c => c.type === 'punctuation';
+  const sents = sentencesOf(DATA.chunks, isP);
+  document.getElementById('content').innerHTML = sents.map(s =>
+    `<div class="sentence">` + s.map(c => {
+      const i = DATA.chunks.indexOf(c);
+      if (isP(c)) return `<span class="punct">${c.surface}</span>`;
+      const read = c.reading && c.reading !== c.surface ? `<span class="r">${c.reading}</span>` : '';
+      return chipHTML(`<span class="s">${c.surface}</span>${read}`,
+        TYPE_COLOR[c.type] || '#64748b', c.grammarPoint ? 'gp' : '', `showChunk(${i},this)`);
+    }).join('') + `</div>`).join('');
+}
+
+// ---------- machine (raw morpheme) view ----------
+function renderRaw() {
+  const isP = m => (m.pos||'').startsWith('補助記号') || (m.pos||'').startsWith('記号');
+  const sents = sentencesOf(DATA.raw, isP);
+  document.getElementById('content').innerHTML = sents.map(s =>
+    `<div class="sentence">` + s.map((m) => {
+      const i = DATA.raw.indexOf(m);
+      if (isP(m)) return `<span class="punct">${m.surface}</span>`;
+      const color = m.synth ? (TYPE_COLOR[m.pos] || '#64748b') : (POS_COLOR[(m.pos||'').split(',')[0]] || '#64748b');
+      const sub = m.lemma && m.lemma !== m.surface ? `<span class="r">${m.lemma}</span>` : '';
+      return chipHTML(`<span class="s">${m.surface}</span>${sub}`, color, '', `showMorph(${i},this)`);
+    }).join('') + `</div>`).join('');
+}
+
+// ---------- details ----------
+function select(el) {
+  document.querySelectorAll('.chip.sel').forEach(x => x.classList.remove('sel'));
+  if (el) el.classList.add('sel');
+}
+function pill(type) {
+  const c = TYPE_COLOR[type] || '#64748b';
+  return `<span class="typepill" style="background:${c}">${type}</span>`;
+}
+function kv(k, v) { return v ? `<div class="kv"><div class="k">${k}</div><div class="v">${v}</div></div>` : ''; }
+
+function showChunk(i, el) {
+  select(el);
+  const c = DATA.chunks[i];
+  const common = c.common ? ' <span style="color:#059669;font-size:12px">✓ common word</span>'
+             : (c.common === false ? ' <span style="color:#94a3b8;font-size:12px">rare</span>' : '');
+  document.getElementById('details').innerHTML = `
+    <div class="dhead"><span class="big">${c.surface}</span>
+      <span class="read">${c.reading}</span> ${pill(c.type)}${common}</div>
+    ${c.grammarPoint ? `<div class="gpbanner">⭐ grammar point: ${c.grammarPoint}</div>` : ''}
+    <div class="gloss">${c.gloss ? '“' + c.gloss + '”' : '<span style="color:#94a3b8">no dictionary entry</span>'}</div>
+    <div class="grid">
+      ${kv('dictionary form', c.dictionaryForm)}
+      ${kv('conjugation', c.conjugation || '—')}
+    </div>
+    ${c.breakdown ? `<table class="bt"><tr><th>morpheme</th><th>lemma</th><th>part of speech</th><th>form</th></tr>` +
+      c.breakdown.map(m => `<tr><td class="jp">${m.surface}</td><td class="jp">${m.lemma}</td>
+        <td>${(m.pos||'').split(',').slice(0,2).join(', ')}</td><td>${m.form || ''}</td></tr>`).join('') + '</table>'
+      : ''}`;
+}
+
+function showMorph(i, el) {
+  select(el);
+  const m = DATA.raw[i];
+  const parent = DATA.chunks[m.chunkIndex];
+  document.getElementById('details').innerHTML = `
+    <div class="dhead"><span class="big">${m.surface}</span>
+      ${pill('auxiliary') === '' ? '' : ''}<span class="typepill" style="background:${m.synth ? (TYPE_COLOR[m.pos]||'#64748b') : (POS_COLOR[(m.pos||'').split(',')[0]]||'#64748b')}">${m.synth ? m.pos : (m.pos||'').split(',').slice(0,2).join(' ')}</span></div>
+    <div class="grid">
+      ${kv('lemma', m.lemma)}
+      ${kv('inflection form', m.form || '—')}
+      ${kv('full POS', m.synth ? m.pos : m.pos)}
+    </div>
+    <div class="part-of">part of learner chunk: <b>${parent.surface}</b>${parent.conjugation ? ' (' + parent.conjugation + ')' : ''}${parent.gloss ? ' — ' + parent.gloss : ''}</div>`;
+}
+
+// ---------- toolbar ----------
+const bL = document.getElementById('btnL'), bR = document.getElementById('btnR');
+function setView(v) {
+  view = v;
+  bL.classList.toggle('active', v === 'learner');
+  bR.classList.toggle('active', v === 'raw');
+  if (v === 'learner') renderLearner(); else renderRaw();
+}
+bL.onclick = () => setView('learner');
+bR.onclick = () => setView('raw');
+setView('learner');
+</script>
+</body>
+</html>
+"""
+
+html = HTML.replace('__DATA__', data_json)
+with open(OUT, 'w', encoding='utf-8') as f:
+    f.write(html)
+print("wrote %s (%.0f KB) — learner view: %s chunks, machine view: %s morphemes"
+      % (OUT, len(html) / 1024, stats['learnerChunks'], stats['rawMorphemes']))

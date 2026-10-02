@@ -1,0 +1,2130 @@
+{
+  "meta": {
+    "source": "Tatoeba sentence #347897 (rank 232778, freq_score -3.586)",
+    "translation": "This is our chance to answer that call. This is our moment. This is our time, to put our people back to work and open doors of opportunity for our kids; to restore prosperity and promote the cause of peace; to reclaim the American dream and reaffirm that fundamental truth, that out of many, we are one; that while we breathe, we hope. And where we are met with cynicism and doubt and those who tell us that we can't, we will respond with that timeless creed that sums up the spirit of a people: Yes, we can.",
+    "pipeline": "UniDic (fugashi) -> rule-based chunk merger -> JMdict_e lookup",
+    "generated": "2026-10-02"
+  },
+  "sentence": "その問いかけに答えるチャンスを今、私たちは手にしました。今この時こそが、私たちの瞬間です。今この時にこそ、私たちは人々がまた仕事につけるようにしなくてはなりません。子供たちのために、チャンスの扉を開かなくてはなりません。繁栄を取り戻し、平和を推進しなくてはなりません。今この時にこそ、アメリカの夢を取り戻し、基本的な真理を再確認しなくてはなりません。大勢の中にあって、私たちはひとつなのだと。息をし続ける限り、私たちは希望をもち続けるのだと。そして疑り深く悲観し否定する声に対しては、そんなことできないという人たちに対しては、ひとつ国民の魂を端的に象徴するあの不朽の信条でもって、必ずやこう答えましょう。",
+  "reading": "そのといかけにこたえるちゃんすをいま、わたくしたちはてにしました。いまこのときこそが、わたくしたちのしゅんかんです。いまこのときにこそ、わたくしたちはひとびとがまたしごとにつけるようにしなくてはなりません。こどもたちのために、ちゃんすのとびらをひらかなくてはなりません。はんえいをとりもどし、へいわをすいしんしなくてはなりません。いまこのときにこそ、あめりかのゆめをとりもどし、きほんてきなしんりをさいかくにんしなくてはなりません。おおぜいのなかにあって、わたくしたちはひとつなのだと。いきをしつづけるかぎり、わたくしたちはきぼうをもちつづけるのだと。そしてうたぐりぶかくひかんしひていするこえにたいしては、そんなことできないというひとたちにたいしては、ひとつこくみんのたましいをたんてきにしょうちょうするあのふきゅうのしんじょうでもって、かならずやこうこたえましょう。",
+  "stats": {
+    "rawMorphemes": 197,
+    "learnerChunks": 151,
+    "multiMorphemeChunks": 25,
+    "jmdictHits": "130/130"
+  },
+  "chunks": [
+    {
+      "surface": "その",
+      "reading": "その",
+      "type": "pre-noun adjectival",
+      "dictionaryForm": "其の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "that; the",
+      "common": true
+    },
+    {
+      "surface": "問いかけ",
+      "reading": "といかけ",
+      "type": "noun",
+      "dictionaryForm": "問いかけ",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "query; interrogation",
+      "common": false
+    },
+    {
+      "surface": "に",
+      "reading": "に",
+      "type": "particle",
+      "dictionaryForm": "に",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "at; in",
+      "common": true
+    },
+    {
+      "surface": "答える",
+      "reading": "こたえる",
+      "type": "verb",
+      "dictionaryForm": "答える",
+      "conjugation": null,
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to answer; to reply",
+      "common": true
+    },
+    {
+      "surface": "チャンス",
+      "reading": "ちゃんす",
+      "type": "noun",
+      "dictionaryForm": "チャンス",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "chance; opportunity",
+      "common": true
+    },
+    {
+      "surface": "を",
+      "reading": "を",
+      "type": "particle",
+      "dictionaryForm": "を",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates direct object of action; indicates subject of causative expression",
+      "common": true
+    },
+    {
+      "surface": "今",
+      "reading": "いま",
+      "type": "noun",
+      "dictionaryForm": "今",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "now; the present time",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "私たち",
+      "reading": "わたくしたち",
+      "type": "pronoun",
+      "dictionaryForm": "私たち",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "私",
+          "lemma": "私",
+          "pos": "代名詞,*,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "たち",
+          "lemma": "達",
+          "pos": "接尾辞,名詞的,一般,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "we; us",
+      "common": true
+    },
+    {
+      "surface": "は",
+      "reading": "は",
+      "type": "particle",
+      "dictionaryForm": "は",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates sentence topic; indicates contrast with another option (stated or unstated)",
+      "common": true
+    },
+    {
+      "surface": "手",
+      "reading": "て",
+      "type": "noun",
+      "dictionaryForm": "手",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "hand; arm",
+      "common": true
+    },
+    {
+      "surface": "に",
+      "reading": "に",
+      "type": "particle",
+      "dictionaryForm": "に",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "at; in",
+      "common": true
+    },
+    {
+      "surface": "しました",
+      "reading": "しました",
+      "type": "verb",
+      "dictionaryForm": "する",
+      "conjugation": "polite, past",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "し",
+          "lemma": "する",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "まし",
+          "lemma": "ます",
+          "pos": "助動詞,*,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "た",
+          "lemma": "た",
+          "pos": "助動詞,*,*,*",
+          "form": "終止形-一般"
+        }
+      ],
+      "gloss": "to do; to carry out",
+      "common": true
+    },
+    {
+      "surface": "。",
+      "reading": "。",
+      "type": "punctuation",
+      "dictionaryForm": "。",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "今",
+      "reading": "いま",
+      "type": "noun",
+      "dictionaryForm": "今",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "now; the present time",
+      "common": true
+    },
+    {
+      "surface": "この",
+      "reading": "この",
+      "type": "pre-noun adjectival",
+      "dictionaryForm": "此の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "this; last (couple of years, etc.)",
+      "common": true
+    },
+    {
+      "surface": "時",
+      "reading": "とき",
+      "type": "noun",
+      "dictionaryForm": "時",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "time; hour",
+      "common": true
+    },
+    {
+      "surface": "こそ",
+      "reading": "こそ",
+      "type": "particle",
+      "dictionaryForm": "こそ",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "it is ... that ...; precisely",
+      "common": true
+    },
+    {
+      "surface": "が",
+      "reading": "が",
+      "type": "particle",
+      "dictionaryForm": "が",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates the subject of a sentence; indicates possession",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "私たち",
+      "reading": "わたくしたち",
+      "type": "pronoun",
+      "dictionaryForm": "私たち",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "私",
+          "lemma": "私",
+          "pos": "代名詞,*,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "たち",
+          "lemma": "達",
+          "pos": "接尾辞,名詞的,一般,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "we; us",
+      "common": true
+    },
+    {
+      "surface": "の",
+      "reading": "の",
+      "type": "particle",
+      "dictionaryForm": "の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates possessive; nominalizes verbs and adjectives",
+      "common": true
+    },
+    {
+      "surface": "瞬間です",
+      "reading": "しゅんかんです",
+      "type": "noun",
+      "dictionaryForm": "瞬間",
+      "conjugation": "polite copula",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "瞬間",
+          "lemma": "瞬間",
+          "pos": "名詞,普通名詞,副詞可能,*",
+          "form": "*"
+        },
+        {
+          "surface": "です",
+          "lemma": "です",
+          "pos": "助動詞,*,*,*",
+          "form": "終止形-一般"
+        }
+      ],
+      "gloss": "moment; instant",
+      "common": true
+    },
+    {
+      "surface": "。",
+      "reading": "。",
+      "type": "punctuation",
+      "dictionaryForm": "。",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "今",
+      "reading": "いま",
+      "type": "noun",
+      "dictionaryForm": "今",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "now; the present time",
+      "common": true
+    },
+    {
+      "surface": "この",
+      "reading": "この",
+      "type": "pre-noun adjectival",
+      "dictionaryForm": "此の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "this; last (couple of years, etc.)",
+      "common": true
+    },
+    {
+      "surface": "時",
+      "reading": "とき",
+      "type": "noun",
+      "dictionaryForm": "時",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "time; hour",
+      "common": true
+    },
+    {
+      "surface": "に",
+      "reading": "に",
+      "type": "particle",
+      "dictionaryForm": "に",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "at; in",
+      "common": true
+    },
+    {
+      "surface": "こそ",
+      "reading": "こそ",
+      "type": "particle",
+      "dictionaryForm": "こそ",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "it is ... that ...; precisely",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "私たち",
+      "reading": "わたくしたち",
+      "type": "pronoun",
+      "dictionaryForm": "私たち",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "私",
+          "lemma": "私",
+          "pos": "代名詞,*,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "たち",
+          "lemma": "達",
+          "pos": "接尾辞,名詞的,一般,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "we; us",
+      "common": true
+    },
+    {
+      "surface": "は",
+      "reading": "は",
+      "type": "particle",
+      "dictionaryForm": "は",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates sentence topic; indicates contrast with another option (stated or unstated)",
+      "common": true
+    },
+    {
+      "surface": "人々",
+      "reading": "ひとびと",
+      "type": "noun",
+      "dictionaryForm": "人々",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "people; men and women",
+      "common": true
+    },
+    {
+      "surface": "が",
+      "reading": "が",
+      "type": "particle",
+      "dictionaryForm": "が",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates the subject of a sentence; indicates possession",
+      "common": true
+    },
+    {
+      "surface": "また",
+      "reading": "また",
+      "type": "adverb",
+      "dictionaryForm": "又",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "again; once more",
+      "common": true
+    },
+    {
+      "surface": "仕事",
+      "reading": "しごと",
+      "type": "noun",
+      "dictionaryForm": "仕事",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "work; job",
+      "common": true
+    },
+    {
+      "surface": "に",
+      "reading": "に",
+      "type": "particle",
+      "dictionaryForm": "に",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "at; in",
+      "common": true
+    },
+    {
+      "surface": "つける",
+      "reading": "つける",
+      "type": "verb",
+      "dictionaryForm": "付ける",
+      "conjugation": null,
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to attach; to join",
+      "common": true
+    },
+    {
+      "surface": "ように",
+      "reading": "ように",
+      "type": "na-adjective",
+      "dictionaryForm": "様",
+      "conjugation": "copula",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "よう",
+          "lemma": "様",
+          "pos": "形状詞,助動詞語幹,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "に",
+          "lemma": "だ",
+          "pos": "助動詞,*,*,*",
+          "form": "連用形-ニ"
+        }
+      ],
+      "gloss": "appearing ...; looking ...",
+      "common": true
+    },
+    {
+      "surface": "しなくてはなりません",
+      "reading": "しなくてはなりません",
+      "type": "grammar point",
+      "dictionaryForm": "する",
+      "conjugation": null,
+      "grammarPoint": "〜なくてはならない / 〜なければならない (must, have to)",
+      "breakdown": [
+        {
+          "surface": "し",
+          "lemma": "する",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "未然形-一般"
+        },
+        {
+          "surface": "なく",
+          "lemma": "ない",
+          "pos": "助動詞,*,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "て",
+          "lemma": "て",
+          "pos": "助詞,接続助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "は",
+          "lemma": "は",
+          "pos": "助詞,係助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "なり",
+          "lemma": "成る",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "ませ",
+          "lemma": "ます",
+          "pos": "助動詞,*,*,*",
+          "form": "未然形-一般"
+        },
+        {
+          "surface": "ん",
+          "lemma": "ず",
+          "pos": "助動詞,*,*,*",
+          "form": "終止形-撥音便"
+        }
+      ],
+      "gloss": "to do; to carry out",
+      "common": true
+    },
+    {
+      "surface": "。",
+      "reading": "。",
+      "type": "punctuation",
+      "dictionaryForm": "。",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "子供たち",
+      "reading": "こどもたち",
+      "type": "noun",
+      "dictionaryForm": "子供たち",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "子供",
+          "lemma": "子供",
+          "pos": "名詞,普通名詞,一般,*",
+          "form": "*"
+        },
+        {
+          "surface": "たち",
+          "lemma": "達",
+          "pos": "接尾辞,名詞的,一般,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "children; kids",
+      "common": true
+    },
+    {
+      "surface": "の",
+      "reading": "の",
+      "type": "particle",
+      "dictionaryForm": "の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates possessive; nominalizes verbs and adjectives",
+      "common": true
+    },
+    {
+      "surface": "ため",
+      "reading": "ため",
+      "type": "noun",
+      "dictionaryForm": "ため",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "good; advantage",
+      "common": true
+    },
+    {
+      "surface": "に",
+      "reading": "に",
+      "type": "particle",
+      "dictionaryForm": "に",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "at; in",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "チャンス",
+      "reading": "ちゃんす",
+      "type": "noun",
+      "dictionaryForm": "チャンス",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "chance; opportunity",
+      "common": true
+    },
+    {
+      "surface": "の",
+      "reading": "の",
+      "type": "particle",
+      "dictionaryForm": "の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates possessive; nominalizes verbs and adjectives",
+      "common": true
+    },
+    {
+      "surface": "扉",
+      "reading": "とびら",
+      "type": "noun",
+      "dictionaryForm": "扉",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "door; gate",
+      "common": true
+    },
+    {
+      "surface": "を",
+      "reading": "を",
+      "type": "particle",
+      "dictionaryForm": "を",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates direct object of action; indicates subject of causative expression",
+      "common": true
+    },
+    {
+      "surface": "開かなくてはなりません",
+      "reading": "ひらかなくてはなりません",
+      "type": "grammar point",
+      "dictionaryForm": "開く",
+      "conjugation": null,
+      "grammarPoint": "〜なくてはならない / 〜なければならない (must, have to)",
+      "breakdown": [
+        {
+          "surface": "開か",
+          "lemma": "開く",
+          "pos": "動詞,一般,*,*",
+          "form": "未然形-一般"
+        },
+        {
+          "surface": "なく",
+          "lemma": "ない",
+          "pos": "助動詞,*,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "て",
+          "lemma": "て",
+          "pos": "助詞,接続助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "は",
+          "lemma": "は",
+          "pos": "助詞,係助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "なり",
+          "lemma": "成る",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "ませ",
+          "lemma": "ます",
+          "pos": "助動詞,*,*,*",
+          "form": "未然形-一般"
+        },
+        {
+          "surface": "ん",
+          "lemma": "ず",
+          "pos": "助動詞,*,*,*",
+          "form": "終止形-撥音便"
+        }
+      ],
+      "gloss": "to open; to undo",
+      "common": true
+    },
+    {
+      "surface": "。",
+      "reading": "。",
+      "type": "punctuation",
+      "dictionaryForm": "。",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "繁栄",
+      "reading": "はんえい",
+      "type": "noun",
+      "dictionaryForm": "繁栄",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "prosperity; thriving",
+      "common": true
+    },
+    {
+      "surface": "を",
+      "reading": "を",
+      "type": "particle",
+      "dictionaryForm": "を",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates direct object of action; indicates subject of causative expression",
+      "common": true
+    },
+    {
+      "surface": "取り戻し",
+      "reading": "とりもどし",
+      "type": "verb",
+      "dictionaryForm": "取り戻す",
+      "conjugation": "masu-stem (連用形)",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to take back; to get back",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "平和",
+      "reading": "へいわ",
+      "type": "noun",
+      "dictionaryForm": "平和",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "peace; harmony",
+      "common": true
+    },
+    {
+      "surface": "を",
+      "reading": "を",
+      "type": "particle",
+      "dictionaryForm": "を",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates direct object of action; indicates subject of causative expression",
+      "common": true
+    },
+    {
+      "surface": "推進",
+      "reading": "すいしん",
+      "type": "noun",
+      "dictionaryForm": "推進",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "propulsion; drive",
+      "common": true
+    },
+    {
+      "surface": "しなくてはなりません",
+      "reading": "しなくてはなりません",
+      "type": "grammar point",
+      "dictionaryForm": "する",
+      "conjugation": null,
+      "grammarPoint": "〜なくてはならない / 〜なければならない (must, have to)",
+      "breakdown": [
+        {
+          "surface": "し",
+          "lemma": "する",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "未然形-一般"
+        },
+        {
+          "surface": "なく",
+          "lemma": "ない",
+          "pos": "助動詞,*,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "て",
+          "lemma": "て",
+          "pos": "助詞,接続助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "は",
+          "lemma": "は",
+          "pos": "助詞,係助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "なり",
+          "lemma": "成る",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "ませ",
+          "lemma": "ます",
+          "pos": "助動詞,*,*,*",
+          "form": "未然形-一般"
+        },
+        {
+          "surface": "ん",
+          "lemma": "ず",
+          "pos": "助動詞,*,*,*",
+          "form": "終止形-撥音便"
+        }
+      ],
+      "gloss": "to do; to carry out",
+      "common": true
+    },
+    {
+      "surface": "。",
+      "reading": "。",
+      "type": "punctuation",
+      "dictionaryForm": "。",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "今",
+      "reading": "いま",
+      "type": "noun",
+      "dictionaryForm": "今",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "now; the present time",
+      "common": true
+    },
+    {
+      "surface": "この",
+      "reading": "この",
+      "type": "pre-noun adjectival",
+      "dictionaryForm": "此の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "this; last (couple of years, etc.)",
+      "common": true
+    },
+    {
+      "surface": "時",
+      "reading": "とき",
+      "type": "noun",
+      "dictionaryForm": "時",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "time; hour",
+      "common": true
+    },
+    {
+      "surface": "に",
+      "reading": "に",
+      "type": "particle",
+      "dictionaryForm": "に",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "at; in",
+      "common": true
+    },
+    {
+      "surface": "こそ",
+      "reading": "こそ",
+      "type": "particle",
+      "dictionaryForm": "こそ",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "it is ... that ...; precisely",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "アメリカ",
+      "reading": "あめりか",
+      "type": "noun",
+      "dictionaryForm": "アメリカ",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "(United States of) America; United States",
+      "common": true
+    },
+    {
+      "surface": "の",
+      "reading": "の",
+      "type": "particle",
+      "dictionaryForm": "の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates possessive; nominalizes verbs and adjectives",
+      "common": true
+    },
+    {
+      "surface": "夢",
+      "reading": "ゆめ",
+      "type": "noun",
+      "dictionaryForm": "夢",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "dream; dream",
+      "common": true
+    },
+    {
+      "surface": "を",
+      "reading": "を",
+      "type": "particle",
+      "dictionaryForm": "を",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates direct object of action; indicates subject of causative expression",
+      "common": true
+    },
+    {
+      "surface": "取り戻し",
+      "reading": "とりもどし",
+      "type": "verb",
+      "dictionaryForm": "取り戻す",
+      "conjugation": "masu-stem (連用形)",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to take back; to get back",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "基本的",
+      "reading": "きほんてき",
+      "type": "noun",
+      "dictionaryForm": "基本的",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "基本",
+          "lemma": "基本",
+          "pos": "名詞,普通名詞,一般,*",
+          "form": "*"
+        },
+        {
+          "surface": "的",
+          "lemma": "的",
+          "pos": "接尾辞,形状詞的,*,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "fundamental; basic",
+      "common": true
+    },
+    {
+      "surface": "な",
+      "reading": "な",
+      "type": "auxiliary",
+      "dictionaryForm": "だ",
+      "conjugation": null,
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "don't; do",
+      "common": true
+    },
+    {
+      "surface": "真理",
+      "reading": "しんり",
+      "type": "noun",
+      "dictionaryForm": "真理",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "truth",
+      "common": true
+    },
+    {
+      "surface": "を",
+      "reading": "を",
+      "type": "particle",
+      "dictionaryForm": "を",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates direct object of action; indicates subject of causative expression",
+      "common": true
+    },
+    {
+      "surface": "再確認",
+      "reading": "さいかくにん",
+      "type": "noun",
+      "dictionaryForm": "再確認",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "再",
+          "lemma": "再",
+          "pos": "接頭辞,*,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "確認",
+          "lemma": "確認",
+          "pos": "名詞,普通名詞,サ変可能,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "reaffirmation; reconfirmation",
+      "common": true
+    },
+    {
+      "surface": "しなくてはなりません",
+      "reading": "しなくてはなりません",
+      "type": "grammar point",
+      "dictionaryForm": "する",
+      "conjugation": null,
+      "grammarPoint": "〜なくてはならない / 〜なければならない (must, have to)",
+      "breakdown": [
+        {
+          "surface": "し",
+          "lemma": "する",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "未然形-一般"
+        },
+        {
+          "surface": "なく",
+          "lemma": "ない",
+          "pos": "助動詞,*,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "て",
+          "lemma": "て",
+          "pos": "助詞,接続助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "は",
+          "lemma": "は",
+          "pos": "助詞,係助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "なり",
+          "lemma": "成る",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "ませ",
+          "lemma": "ます",
+          "pos": "助動詞,*,*,*",
+          "form": "未然形-一般"
+        },
+        {
+          "surface": "ん",
+          "lemma": "ず",
+          "pos": "助動詞,*,*,*",
+          "form": "終止形-撥音便"
+        }
+      ],
+      "gloss": "to do; to carry out",
+      "common": true
+    },
+    {
+      "surface": "。",
+      "reading": "。",
+      "type": "punctuation",
+      "dictionaryForm": "。",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "大勢",
+      "reading": "おおぜい",
+      "type": "noun",
+      "dictionaryForm": "大勢",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "crowd of people; great number of people",
+      "common": true
+    },
+    {
+      "surface": "の",
+      "reading": "の",
+      "type": "particle",
+      "dictionaryForm": "の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates possessive; nominalizes verbs and adjectives",
+      "common": true
+    },
+    {
+      "surface": "中",
+      "reading": "なか",
+      "type": "noun",
+      "dictionaryForm": "中",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "inside; within",
+      "common": true
+    },
+    {
+      "surface": "に",
+      "reading": "に",
+      "type": "particle",
+      "dictionaryForm": "に",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "at; in",
+      "common": true
+    },
+    {
+      "surface": "あっ",
+      "reading": "あっ",
+      "type": "verb",
+      "dictionaryForm": "有る",
+      "conjugation": "連用形-促音便",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to be; to exist",
+      "common": true
+    },
+    {
+      "surface": "て",
+      "reading": "て",
+      "type": "particle",
+      "dictionaryForm": "て",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "you said; he said",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "私たち",
+      "reading": "わたくしたち",
+      "type": "pronoun",
+      "dictionaryForm": "私たち",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "私",
+          "lemma": "私",
+          "pos": "代名詞,*,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "たち",
+          "lemma": "達",
+          "pos": "接尾辞,名詞的,一般,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "we; us",
+      "common": true
+    },
+    {
+      "surface": "は",
+      "reading": "は",
+      "type": "particle",
+      "dictionaryForm": "は",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates sentence topic; indicates contrast with another option (stated or unstated)",
+      "common": true
+    },
+    {
+      "surface": "ひとつ",
+      "reading": "ひとつ",
+      "type": "noun",
+      "dictionaryForm": "ひとつ",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "ひと",
+          "lemma": "一",
+          "pos": "名詞,数詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "つ",
+          "lemma": "つ",
+          "pos": "接尾辞,名詞的,助数詞,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "one; for one thing",
+      "common": true
+    },
+    {
+      "surface": "な",
+      "reading": "な",
+      "type": "auxiliary",
+      "dictionaryForm": "だ",
+      "conjugation": null,
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "don't; do",
+      "common": true
+    },
+    {
+      "surface": "のだ",
+      "reading": "のだ",
+      "type": "particle",
+      "dictionaryForm": "の",
+      "conjugation": "copula",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "の",
+          "lemma": "の",
+          "pos": "助詞,準体助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "だ",
+          "lemma": "だ",
+          "pos": "助動詞,*,*,*",
+          "form": "終止形-一般"
+        }
+      ],
+      "gloss": "indicates possessive; nominalizes verbs and adjectives",
+      "common": true
+    },
+    {
+      "surface": "と",
+      "reading": "と",
+      "type": "particle",
+      "dictionaryForm": "と",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "if; when",
+      "common": true
+    },
+    {
+      "surface": "。",
+      "reading": "。",
+      "type": "punctuation",
+      "dictionaryForm": "。",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "息",
+      "reading": "いき",
+      "type": "noun",
+      "dictionaryForm": "息",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "breath; breathing",
+      "common": true
+    },
+    {
+      "surface": "を",
+      "reading": "を",
+      "type": "particle",
+      "dictionaryForm": "を",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates direct object of action; indicates subject of causative expression",
+      "common": true
+    },
+    {
+      "surface": "し続ける",
+      "reading": "しつづける",
+      "type": "verb",
+      "dictionaryForm": "し続ける",
+      "conjugation": null,
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "し",
+          "lemma": "する",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "続ける",
+          "lemma": "続ける",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "連体形-一般"
+        }
+      ],
+      "gloss": "to continue to do; to persist in doing",
+      "common": true
+    },
+    {
+      "surface": "限り",
+      "reading": "かぎり",
+      "type": "noun",
+      "dictionaryForm": "限り",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "end; finish",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "私たち",
+      "reading": "わたくしたち",
+      "type": "pronoun",
+      "dictionaryForm": "私たち",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "私",
+          "lemma": "私",
+          "pos": "代名詞,*,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "たち",
+          "lemma": "達",
+          "pos": "接尾辞,名詞的,一般,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "we; us",
+      "common": true
+    },
+    {
+      "surface": "は",
+      "reading": "は",
+      "type": "particle",
+      "dictionaryForm": "は",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates sentence topic; indicates contrast with another option (stated or unstated)",
+      "common": true
+    },
+    {
+      "surface": "希望",
+      "reading": "きぼう",
+      "type": "noun",
+      "dictionaryForm": "希望",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "hope; wish",
+      "common": true
+    },
+    {
+      "surface": "を",
+      "reading": "を",
+      "type": "particle",
+      "dictionaryForm": "を",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates direct object of action; indicates subject of causative expression",
+      "common": true
+    },
+    {
+      "surface": "もち続ける",
+      "reading": "もちつづける",
+      "type": "verb",
+      "dictionaryForm": "もち続ける",
+      "conjugation": null,
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "もち",
+          "lemma": "持つ",
+          "pos": "動詞,一般,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "続ける",
+          "lemma": "続ける",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "連体形-一般"
+        }
+      ],
+      "gloss": "to continue to hold; to hold on to (for a long period)",
+      "common": false
+    },
+    {
+      "surface": "のだ",
+      "reading": "のだ",
+      "type": "particle",
+      "dictionaryForm": "の",
+      "conjugation": "copula",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "の",
+          "lemma": "の",
+          "pos": "助詞,準体助詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "だ",
+          "lemma": "だ",
+          "pos": "助動詞,*,*,*",
+          "form": "終止形-一般"
+        }
+      ],
+      "gloss": "indicates possessive; nominalizes verbs and adjectives",
+      "common": true
+    },
+    {
+      "surface": "と",
+      "reading": "と",
+      "type": "particle",
+      "dictionaryForm": "と",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "if; when",
+      "common": true
+    },
+    {
+      "surface": "。",
+      "reading": "。",
+      "type": "punctuation",
+      "dictionaryForm": "。",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "そして",
+      "reading": "そして",
+      "type": "conjunction",
+      "dictionaryForm": "そして",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "and; and then",
+      "common": true
+    },
+    {
+      "surface": "疑り深く",
+      "reading": "うたぐりぶかく",
+      "type": "i-adjective",
+      "dictionaryForm": "疑り深い",
+      "conjugation": "masu-stem (連用形)",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "doubting; distrustful",
+      "common": false
+    },
+    {
+      "surface": "悲観",
+      "reading": "ひかん",
+      "type": "noun",
+      "dictionaryForm": "悲観",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "pessimism; (taking a) gloomy view",
+      "common": true
+    },
+    {
+      "surface": "し",
+      "reading": "し",
+      "type": "verb",
+      "dictionaryForm": "する",
+      "conjugation": "masu-stem (連用形)",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to do; to carry out",
+      "common": true
+    },
+    {
+      "surface": "否定",
+      "reading": "ひてい",
+      "type": "noun",
+      "dictionaryForm": "否定",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "denial; negation",
+      "common": true
+    },
+    {
+      "surface": "する",
+      "reading": "する",
+      "type": "verb",
+      "dictionaryForm": "する",
+      "conjugation": null,
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to do; to carry out",
+      "common": true
+    },
+    {
+      "surface": "声",
+      "reading": "こえ",
+      "type": "noun",
+      "dictionaryForm": "声",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "voice; singing (of a bird)",
+      "common": true
+    },
+    {
+      "surface": "に",
+      "reading": "に",
+      "type": "particle",
+      "dictionaryForm": "に",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "at; in",
+      "common": true
+    },
+    {
+      "surface": "対し",
+      "reading": "たいし",
+      "type": "verb",
+      "dictionaryForm": "対する",
+      "conjugation": "masu-stem (連用形)",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to face (each other); to be facing",
+      "common": true
+    },
+    {
+      "surface": "て",
+      "reading": "て",
+      "type": "particle",
+      "dictionaryForm": "て",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "you said; he said",
+      "common": true
+    },
+    {
+      "surface": "は",
+      "reading": "は",
+      "type": "particle",
+      "dictionaryForm": "は",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates sentence topic; indicates contrast with another option (stated or unstated)",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "そんな",
+      "reading": "そんな",
+      "type": "pre-noun adjectival",
+      "dictionaryForm": "そんな",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "such; that sort of",
+      "common": true
+    },
+    {
+      "surface": "こと",
+      "reading": "こと",
+      "type": "noun",
+      "dictionaryForm": "こと",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "thing; matter",
+      "common": true
+    },
+    {
+      "surface": "できない",
+      "reading": "できない",
+      "type": "verb",
+      "dictionaryForm": "出来る",
+      "conjugation": "negative",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "でき",
+          "lemma": "出来る",
+          "pos": "動詞,非自立可能,*,*",
+          "form": "未然形-一般"
+        },
+        {
+          "surface": "ない",
+          "lemma": "ない",
+          "pos": "助動詞,*,*,*",
+          "form": "終止形-一般"
+        }
+      ],
+      "gloss": "to be able to do; to be possible",
+      "common": true
+    },
+    {
+      "surface": "と",
+      "reading": "と",
+      "type": "particle",
+      "dictionaryForm": "と",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "if; when",
+      "common": true
+    },
+    {
+      "surface": "いう",
+      "reading": "いう",
+      "type": "verb",
+      "dictionaryForm": "言う",
+      "conjugation": null,
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to say; to utter",
+      "common": true
+    },
+    {
+      "surface": "人たち",
+      "reading": "ひとたち",
+      "type": "noun",
+      "dictionaryForm": "人たち",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "人",
+          "lemma": "人",
+          "pos": "名詞,普通名詞,一般,*",
+          "form": "*"
+        },
+        {
+          "surface": "たち",
+          "lemma": "達",
+          "pos": "接尾辞,名詞的,一般,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "people",
+      "common": true
+    },
+    {
+      "surface": "に",
+      "reading": "に",
+      "type": "particle",
+      "dictionaryForm": "に",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "at; in",
+      "common": true
+    },
+    {
+      "surface": "対し",
+      "reading": "たいし",
+      "type": "verb",
+      "dictionaryForm": "対する",
+      "conjugation": "masu-stem (連用形)",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to face (each other); to be facing",
+      "common": true
+    },
+    {
+      "surface": "て",
+      "reading": "て",
+      "type": "particle",
+      "dictionaryForm": "て",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "you said; he said",
+      "common": true
+    },
+    {
+      "surface": "は",
+      "reading": "は",
+      "type": "particle",
+      "dictionaryForm": "は",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates sentence topic; indicates contrast with another option (stated or unstated)",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "ひとつ",
+      "reading": "ひとつ",
+      "type": "noun",
+      "dictionaryForm": "ひとつ",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "ひと",
+          "lemma": "一",
+          "pos": "名詞,数詞,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "つ",
+          "lemma": "つ",
+          "pos": "接尾辞,名詞的,助数詞,*",
+          "form": "*"
+        }
+      ],
+      "gloss": "one; for one thing",
+      "common": true
+    },
+    {
+      "surface": "国民",
+      "reading": "こくみん",
+      "type": "noun",
+      "dictionaryForm": "国民",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "people (of a country); nation",
+      "common": true
+    },
+    {
+      "surface": "の",
+      "reading": "の",
+      "type": "particle",
+      "dictionaryForm": "の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates possessive; nominalizes verbs and adjectives",
+      "common": true
+    },
+    {
+      "surface": "魂",
+      "reading": "たましい",
+      "type": "noun",
+      "dictionaryForm": "魂",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "soul; spirit",
+      "common": true
+    },
+    {
+      "surface": "を",
+      "reading": "を",
+      "type": "particle",
+      "dictionaryForm": "を",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates direct object of action; indicates subject of causative expression",
+      "common": true
+    },
+    {
+      "surface": "端的に",
+      "reading": "たんてきに",
+      "type": "na-adjective",
+      "dictionaryForm": "端的",
+      "conjugation": "copula",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "端的",
+          "lemma": "端的",
+          "pos": "形状詞,一般,*,*",
+          "form": "*"
+        },
+        {
+          "surface": "に",
+          "lemma": "だ",
+          "pos": "助動詞,*,*,*",
+          "form": "連用形-ニ"
+        }
+      ],
+      "gloss": "frank; direct",
+      "common": true
+    },
+    {
+      "surface": "象徴",
+      "reading": "しょうちょう",
+      "type": "noun",
+      "dictionaryForm": "象徴",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "symbol (of something abstract); emblem",
+      "common": true
+    },
+    {
+      "surface": "する",
+      "reading": "する",
+      "type": "verb",
+      "dictionaryForm": "する",
+      "conjugation": null,
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to do; to carry out",
+      "common": true
+    },
+    {
+      "surface": "あの",
+      "reading": "あの",
+      "type": "interjection",
+      "dictionaryForm": "あの",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "that; those",
+      "common": true
+    },
+    {
+      "surface": "不朽",
+      "reading": "ふきゅう",
+      "type": "noun",
+      "dictionaryForm": "不朽",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "everlasting; immortal",
+      "common": false
+    },
+    {
+      "surface": "の",
+      "reading": "の",
+      "type": "particle",
+      "dictionaryForm": "の",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "indicates possessive; nominalizes verbs and adjectives",
+      "common": true
+    },
+    {
+      "surface": "信条",
+      "reading": "しんじょう",
+      "type": "noun",
+      "dictionaryForm": "信条",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "creed; belief",
+      "common": true
+    },
+    {
+      "surface": "で",
+      "reading": "で",
+      "type": "particle",
+      "dictionaryForm": "で",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "and; (and) then",
+      "common": false
+    },
+    {
+      "surface": "もっ",
+      "reading": "もっ",
+      "type": "verb",
+      "dictionaryForm": "持つ",
+      "conjugation": "連用形-促音便",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "to hold (in one's hand); to take",
+      "common": true
+    },
+    {
+      "surface": "て",
+      "reading": "て",
+      "type": "particle",
+      "dictionaryForm": "て",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "you said; he said",
+      "common": true
+    },
+    {
+      "surface": "、",
+      "reading": "、",
+      "type": "punctuation",
+      "dictionaryForm": "、",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    },
+    {
+      "surface": "必ず",
+      "reading": "かならず",
+      "type": "adverb",
+      "dictionaryForm": "必ず",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "always; without exception",
+      "common": true
+    },
+    {
+      "surface": "や",
+      "reading": "や",
+      "type": "particle",
+      "dictionaryForm": "や",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "such things as ...; and ... and",
+      "common": true
+    },
+    {
+      "surface": "こう",
+      "reading": "こう",
+      "type": "adverb",
+      "dictionaryForm": "こう",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": "in this way; like this",
+      "common": true
+    },
+    {
+      "surface": "答えましょう",
+      "reading": "こたえましょう",
+      "type": "verb",
+      "dictionaryForm": "答える",
+      "conjugation": "polite volitional (\"let's\")",
+      "grammarPoint": null,
+      "breakdown": [
+        {
+          "surface": "答え",
+          "lemma": "答える",
+          "pos": "動詞,一般,*,*",
+          "form": "連用形-一般"
+        },
+        {
+          "surface": "ましょう",
+          "lemma": "ます",
+          "pos": "助動詞,*,*,*",
+          "form": "意志推量形"
+        }
+      ],
+      "gloss": "to answer; to reply",
+      "common": true
+    },
+    {
+      "surface": "。",
+      "reading": "。",
+      "type": "punctuation",
+      "dictionaryForm": "。",
+      "conjugation": "*",
+      "grammarPoint": null,
+      "breakdown": null,
+      "gloss": null,
+      "common": null
+    }
+  ]
+}
