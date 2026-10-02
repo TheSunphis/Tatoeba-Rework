@@ -1,0 +1,78 @@
+name: step4-ollama
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'Ollama model tag'
+        required: true
+        default: 'qwen2.5:7b'
+      sentence:
+        description: 'Single sentence to enrich (leave empty to use the pack file)'
+        required: false
+        default: '今は、それについてコメントしたくない。'
+      pack_file:
+        description: 'Pack file (used when sentence is empty), path from repo root'
+        required: false
+        default: 'Japanese/Pack 01/pack01_020.json'
+      limit:
+        description: 'Max sentences from the pack file'
+        required: false
+        default: '10'
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pipeline dependencies
+        run: |
+          pip install fugashi unidic
+          python -m unidic download
+          curl -sSf -o /tmp/JMdict_e.gz https://www.edrdg.org/pub/Nihongo/JMdict_e.gz
+
+      - name: Install Ollama
+        run: curl -fsSL https://ollama.com/install.sh | sh
+
+      - name: Start Ollama and pull the model
+        env:
+          MODEL: ${{ inputs.model }}
+        run: |
+          nohup ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 60); do
+            curl -s http://localhost:11434/ >/dev/null && break
+            sleep 2
+          done
+          curl -s http://localhost:11434/ >/dev/null || (cat /tmp/ollama.log; exit 1)
+          ollama pull "$MODEL"
+
+      - name: Enrich
+        env:
+          MODEL: ${{ inputs.model }}
+          SENTENCE: ${{ inputs.sentence }}
+          PACK_FILE: ${{ inputs.pack_file }}
+          LIMIT: ${{ inputs.limit }}
+        run: |
+          if [ -n "$SENTENCE" ]; then
+            python3 pipeline/Japanese/step4_run.py \
+              --sentence "$SENTENCE" --model "$MODEL" --out /tmp/deck.json
+          else
+            python3 pipeline/Japanese/step4_run.py \
+              --pack "$PACK_FILE" --limit "$LIMIT" --model "$MODEL" --out /tmp/enriched.jsonl
+          fi
+
+      - name: Upload enriched output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: step4-enriched
+          path: |
+            /tmp/deck.json
+            /tmp/enriched.jsonl
+          if-no-files-found: warn

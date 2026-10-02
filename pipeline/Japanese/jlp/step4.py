@@ -17,8 +17,8 @@ Rules of the house, enforced by code:
 - One sentence at a time, on demand — never over the whole corpus.
 
 Bring your own model: `llm` is any callable taking the prompt string and
-returning the model's text (OpenAI SDK, Anthropic SDK, a local server, a
-human — all work). No network code lives in this package.
+returning the model's text (OpenAI SDK, Anthropic SDK, a human — all work).
+For a local Ollama server use ollama_llm() below (standard library only).
 
 Typical flow:
 
@@ -175,3 +175,36 @@ def enrich(sentence, translations=None, idx=None, llm=None):
     result = process(sentence, idx=idx)
     parse_response(result['chunks'], llm(build_prompt(result, translations)))
     return result
+
+
+# ------------------------------------------------------------------ providers
+
+def ollama_chat_payload(model, prompt, temperature=0.2):
+    """Request body for an Ollama /api/chat call (JSON mode on)."""
+    return {
+        'model': model,
+        'messages': [{'role': 'user', 'content': prompt}],
+        'stream': False,
+        'format': 'json',
+        'options': {'temperature': temperature},
+    }
+
+
+def ollama_llm(model='qwen2.5:7b', host='http://localhost:11434', timeout=300):
+    """An llm callable for enrich() that talks to an Ollama server.
+
+    Standard library only — no SDK. `format: json` makes Ollama constrain
+    the reply to valid JSON, which pairs well with parse_response.
+    Requires a running server (`ollama serve`) with the model pulled.
+    """
+    import urllib.request
+
+    def llm(prompt):
+        req = urllib.request.Request(
+            host.rstrip('/') + '/api/chat',
+            data=json.dumps(ollama_chat_payload(model, prompt)).encode('utf-8'),
+            headers={'Content-Type': 'application/json'})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            data = json.loads(r.read().decode('utf-8'))
+        return data['message']['content']
+    return llm

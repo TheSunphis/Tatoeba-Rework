@@ -152,6 +152,47 @@ def test_step4_enrich_requires_llm():
         pass
 
 
+def test_step4_ollama_payload():
+    p = lp.ollama_chat_payload('qwen2.5:7b', 'hello')
+    assert p['model'] == 'qwen2.5:7b'
+    assert p['messages'] == [{'role': 'user', 'content': 'hello'}]
+    assert p['stream'] is False and p['format'] == 'json'
+    assert p['options']['temperature'] == 0.2
+
+
+def test_step4_ollama_callable_end_to_end():
+    import threading
+    from http.server import BaseHTTPRequestHandler, HTTPServer
+
+    class Stub(BaseHTTPRequestHandler):
+        def do_POST(self):
+            body = json.loads(self.rfile.read(int(self.headers['Content-Length'])))
+            reply = {'message': {'role': 'assistant', 'content': json.dumps({'chunks': [
+                {'surface': '今', 'contextualMeaning': 'now',
+                 'literalContribution': 'sets the time frame'}]})}}
+            data = json.dumps(reply).encode()
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Content-Length', str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+
+        def log_message(self, *a):
+            pass
+
+    srv = HTTPServer(('127.0.0.1', 0), Stub)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    try:
+        llm = lp.ollama_llm(model='stub', host=f'http://127.0.0.1:{srv.server_port}')
+        r = lp.process('今。', idx=IDX)
+        lp.parse_response(r['chunks'], llm(lp.build_prompt(r)))
+        c = next(c for c in r['chunks'] if c['type'] != 'punctuation')
+        assert c['contextualMeaning'] == 'now'
+        assert c['literalContribution'] == 'sets the time frame'
+    finally:
+        srv.shutdown()
+
+
 def main():
     tests = [(n, f) for n, f in sorted(globals().items())
              if n.startswith('test_') and callable(f)]

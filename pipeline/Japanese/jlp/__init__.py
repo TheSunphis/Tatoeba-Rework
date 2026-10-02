@@ -22,6 +22,7 @@ from .grammar import pre, post, PRE_RULES, POST_RULES
 from .lexicon import jmdict_lookup
 from .glosser import attach_glosses, alt_dict_form, pick_entry, TYPE_POS_PREF
 from .cards import process, chunks_lookup_keys, CARD_KEYS, validate_chunks
-from .step4 import build_prompt, parse_response, enrich
+from .step4 import (build_prompt, parse_response, enrich, ollama_llm,
+                     ollama_chat_payload)
 
-__version__ = '2.1.0'
+__version__ = '2.2.0'

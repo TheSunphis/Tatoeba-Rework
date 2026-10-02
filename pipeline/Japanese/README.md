@@ -84,8 +84,8 @@ reorder, rewrite, add or drop chunks makes `parse_response` reject the
 whole response — no partial application ever touches the deck.
 
 Bring your own model — `llm` is any callable `(prompt: str) -> str`
-(OpenAI/Anthropic SDK, a local server, even a human). No network code in
-this package:
+(OpenAI/Anthropic SDK, a human). For a local [Ollama](https://ollama.com)
+server, the package ships a stdlib-only connector — see below.
 
 ```python
 from jlp import process, build_prompt, parse_response, enrich
@@ -99,6 +99,37 @@ parse_response(result['chunks'], reply)     # validated, then applied
 
 `build_site.py` renders both fields in the chunk details panel when
 present. A complete example prompt: `examples/step4_prompt_everyday.txt`.
+
+### Ollama (local, free)
+
+`ollama_llm()` in `jlp/step4.py` talks to a local Ollama server with
+`format: json` enabled, so replies arrive as valid JSON for
+`parse_response`. The CLI wrapper `step4_run.py`:
+
+```bash
+ollama serve &                        # once
+ollama pull qwen2.5:7b                # once (~4.7 GB)
+
+# one sentence -> enriched deck (render it with build_site.py)
+python3 pipeline/Japanese/step4_run.py \
+    --sentence "今は、それについてコメントしたくない。" \
+    --model qwen2.5:7b --out deck.json
+
+# a pack file -> enriched JSONL (--limit caps the sentence count)
+python3 pipeline/Japanese/step4_run.py \
+    --pack "Japanese/Pack 01/pack01_020.json" \
+    --limit 10 --model qwen2.5:7b --out enriched.jsonl
+```
+
+Smaller machines: `qwen2.5:1.5b` (~1 GB RAM) works with noticeably rougher
+output; every reply still passes the same validation.
+
+### GitHub Actions (no local RAM needed)
+
+`.github/workflows/step4-ollama.yml` runs the same thing on a free GitHub
+runner (16 GB RAM): **Actions → step4-ollama → Run workflow**, choose the
+model and either a sentence or a pack file + limit. The enriched output is
+uploaded as an artifact. Free for public repositories.
 
 ## Usage
 
