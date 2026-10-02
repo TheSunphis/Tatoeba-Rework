@@ -186,7 +186,7 @@ Every chunk carries: `surface`, `reading`, `type`, `dictionaryForm`,
 translations, morpheme/chunk counts, and the JMdict hit rate.
 
 The explorer site (built by `build_site.py`) embeds the same JSON and offers
-two views: **🎓 Learner** (merged chunks) and **🔧 Machine** (raw UniDic
+two views: **Learner** (merged chunks) and **Machine** (raw UniDic
 morphemes), with clickable chips, a gloss/details panel, and per-chunk
 breakdown tables.
 

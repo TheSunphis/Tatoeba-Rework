@@ -59,8 +59,8 @@ def main():
         for c in result['chunks']:
             if c['type'] == 'punctuation':
                 continue
-            print(f"  {c['surface']:<10} 🎯 {c['contextualMeaning']}")
-            print(f"  {'':<10} 🧩 {c['literalContribution']}")
+            print(f"  {c['surface']:<10} in this sentence : {c['contextualMeaning']}")
+            print(f"  {'':<10} builds           : {c['literalContribution']}")
         if args.out:
             deck = {
                 'meta': {

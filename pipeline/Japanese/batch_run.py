@@ -32,11 +32,13 @@ MASTER = 'Japanese/tatoeba_all_pairs_sorted.json.bz2'
 REQ_KEYS = ('surface', 'reading', 'type', 'dictionaryForm', 'conjugation',
             'grammarPoint', 'breakdown', 'gloss', 'common')
 
+# emoji below are written as escapes on purpose: robustness test inputs,
+# not decoration (the pipeline must survive emoji-bearing sentences)
 TORTURE = [
-    '', ' ', '　', '。', '！', '？？？', '……。', '😅😅', '123', 'ABC',
+    '', ' ', '　', '。', '！', '？？？', '……。', '\U0001F605\U0001F605', '123', 'ABC',
     'test sentence', 'a。b。c。', '「」', 'ーーー', '漢字', 'あ' * 500,
-    '今日は2026年10月2日です。', 'iPhone15を買いました🎉',
-    'ünïcödéと日本語の混合', '⭐︎⭐︎⭐︎', 'クリスマスイブにサンタが来た。',
+    '今日は2026年10月2日です。', 'iPhone15を買いました\U0001F389',
+    'ünïcödéと日本語の混合', '\U00002B50\ufe0f\U00002B50\ufe0f\U00002B50\ufe0f', 'クリスマスイブにサンタが来た。',
 ]
 
 

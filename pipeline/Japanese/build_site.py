@@ -73,7 +73,7 @@ HTML = r"""<!DOCTYPE html>
   .chip .s { font-size: 18px; line-height: 1.3; }
   .chip .r { font-size: 10px; color: var(--muted); line-height: 1.2; }
   .chip.gp { background: color-mix(in srgb, var(--c) 12%, #fff); }
-  .chip.gp .s::after { content: " ★"; font-size: 12px; }
+  .chip.gp .s::after { content: " · grammar"; font-size: 10px; color: #b91c1c; }
   .punct { font-size: 18px; margin: 0 1px; color: var(--ink); }
   .details { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
              background: var(--card); border-top: 1px solid var(--line);
@@ -104,13 +104,13 @@ HTML = r"""<!DOCTYPE html>
 </head>
 <body>
 <div class="wrap">
-  <h1>🇯🇵 Sentence Explorer</h1>
+  <h1>Sentence Explorer</h1>
   <div class="sub" id="src"></div>
   <div class="badges" id="badges"></div>
   <div class="translation"><span class="lbl">English (Tatoeba)</span><span id="en"></span></div>
   <div class="toolbar">
-    <button id="btnL">🎓 Learner view (<span id="nL"></span> chunks)</button>
-    <button id="btnR">🔧 Machine view (<span id="nR"></span> morphemes)</button>
+    <button id="btnL">Learner view (<span id="nL"></span> chunks)</button>
+    <button id="btnR">Machine view (<span id="nR"></span> morphemes)</button>
   </div>
   <div class="legend" id="legend"></div>
   <div id="content"></div>
@@ -118,7 +118,7 @@ HTML = r"""<!DOCTYPE html>
 </div>
 
 <div class="details"><div class="inner" id="details">
-  <p class="hint">👆 click any segment above to see its card</p>
+  <p class="hint">click any segment above to see its card</p>
 </div></div>
 
 <script>
@@ -153,7 +153,7 @@ document.getElementById('foot').innerHTML =
   'Data: Tatoeba.org (CC BY 2.0 FR, some CC0) · dictionary: JMdict (EDRDG) · ' +
   'tokenized with UniDic · built ' + (DATA.meta.generated || '');
 
-const LEGEND = [['grammar point','grammar point ★'],['verb','verb'],['noun','noun'],
+const LEGEND = [['grammar point','grammar point'],['verb','verb'],['noun','noun'],
   ['particle','particle'],['pronoun','pronoun'],['i-adjective','adjective'],
   ['adverb','adverb'],['pre-noun adjectival','this/that + noun'],['auxiliary','auxiliary']];
 document.getElementById('legend').innerHTML = LEGEND.map(([t,l]) =>
@@ -216,14 +216,14 @@ function kv(k, v) { return v ? `<div class="kv"><div class="k">${k}</div><div cl
 function showChunk(i, el) {
   select(el);
   const c = DATA.chunks[i];
-  const common = c.common ? ' <span style="color:#059669;font-size:12px">✓ common word</span>'
+  const common = c.common ? ' <span style="color:#059669;font-size:12px">common word</span>'
              : (c.common === false ? ' <span style="color:#94a3b8;font-size:12px">rare</span>' : '');
   document.getElementById('details').innerHTML = `
     <div class="dhead"><span class="big">${c.surface}</span>
       <span class="read">${c.reading}</span> ${pill(c.type)}${common}</div>
-    ${c.grammarPoint ? `<div class="gpbanner">⭐ grammar point: ${c.grammarPoint}</div>` : ''}
-    ${c.contextualMeaning ? `<div class="step4">🎯 <b>in this sentence:</b> ${c.contextualMeaning}</div>` : ''}
-    ${c.literalContribution ? `<div class="step4">🧩 <b>builds:</b> ${c.literalContribution}</div>` : ''}
+    ${c.grammarPoint ? `<div class="gpbanner">Grammar point: ${c.grammarPoint}</div>` : ''}
+    ${c.contextualMeaning ? `<div class="step4"><b>In this sentence:</b> ${c.contextualMeaning}</div>` : ''}
+    ${c.literalContribution ? `<div class="step4"><b>Builds the translation:</b> ${c.literalContribution}</div>` : ''}
     <div class="gloss">${c.gloss ? '“' + c.gloss + '”' : '<span style="color:#94a3b8">no dictionary entry</span>'}</div>
     <div class="grid">
       ${kv('dictionary form', c.dictionaryForm)}
