@@ -45,6 +45,34 @@ Requirements: Python 3, `fugashi` + `unidic`
 English-only JMdict (`JMdict_e.gz` from <https://www.edrdg.org/pub/Nihongo/>)
 at `/tmp/JMdict_e.gz`.
 
+## Batch mode (full corpus)
+
+`batch_run.py` processes the whole corpus with one shared tagger and ONE
+shared JMdict index (two-pass: collect every lookup key → build the index
+once → gloss everything):
+
+```bash
+# from the repo root
+python3 pipeline/Japanese/batch_run.py --sample 5000 --torture   # stratified sample + edge cases
+python3 pipeline/Japanese/batch_run.py --all --out cards.jsonl   # every sentence, cards JSONL
+```
+
+Measured on the full 232,778-sentence corpus (Oct 2026, 1 GB RAM sandbox):
+
+| | |
+|---|---|
+| wall clock | **2.5 min** (load 5 s · pass 1 64 s · index 16 s · pass 2 72 s) |
+| errors | **0 exceptions, 0 schema violations** (incl. a 21-case edge torture set) |
+| morphemes → chunks | 2,668,044 → 2,298,261 (avg 1.16) |
+| JMdict gloss coverage | 98.9% (misses are names/digits; gloss stays `null`) |
+| peak RSS | 530 MB |
+| cards JSONL | ~564 MB (2.4 KB/sentence) |
+
+Zero-error policy: any failing sentence is caught per sentence (never fatal)
+and reported with a full traceback; the runner also verifies the card schema
+of every chunk. The 1.1% gloss misses are honest `null`s — proper nouns
+(メアリー, トム…), digits, and clipped forms — not pipeline failures.
+
 ## Card schema (cards JSON)
 
 Every chunk carries: `surface`, `reading`, `type`, `dictionaryForm`,
@@ -80,5 +108,5 @@ network, no dependencies.
 
 1. step 4 — the anchored LLM contextual layer (the architecture above)
 2. more grammar patterns and idiom merging
-3. batch mode over the Japanese/ pack files
+3. output format for full-corpus batch runs (compressed / per-pack enrichment)
 4. Anki deck export from cards JSON

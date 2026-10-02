@@ -127,9 +127,19 @@ def match_must_pattern(toks, i):
     return j
 
 
+_TAGGER = None
+
+
+def get_tagger():
+    """Single shared fugashi tagger (loading UniDic per call is wasteful)."""
+    global _TAGGER
+    if _TAGGER is None:
+        _TAGGER = Tagger()
+    return _TAGGER
+
+
 def build_chunks(sent: str):
-    tagger = Tagger()
-    toks = tokens_of(tagger, sent)
+    toks = tokens_of(get_tagger(), sent)
     chunks = []
     i, n = 0, len(toks)
     while i < n:
@@ -322,17 +332,24 @@ def pick_entry(cands, ctype):
     return cands[0]
 
 
-def attach_glosses(chunks):
-    # UniDic sometimes picks a homophonous lemma kanji (帰りました -> 返る);
-    # offer surface-kanji + lemma tail (帰る) as an alternative dictionary form
+def alt_dict_form(c):
+    """UniDic sometimes picks a homophonous lemma kanji (帰りました -> 返る);
+    offer surface-kanji + lemma tail (帰る) as an alternative dictionary form."""
+    if c['type'] in ('verb', 'grammar point') and len(c['dictionaryForm']) >= 2 and \
+            c['surface'] and c['surface'][0] != c['dictionaryForm'][0] and \
+            '\u4e00' <= c['surface'][0] <= '\u9fff':          # only swap in a real kanji
+        return c['surface'][0] + c['dictionaryForm'][1:]
+    return None
+
+
+def attach_glosses(chunks, idx=None):
     for c in chunks:
-        c['_alt'] = None
-        if c['type'] in ('verb', 'grammar point') and len(c['dictionaryForm']) >= 2 and \
-                c['surface'] and c['surface'][0] != c['dictionaryForm'][0] and \
-                '\u4e00' <= c['surface'][0] <= '\u9fff':      # only swap in a real kanji
-            c['_alt'] = c['surface'][0] + c['dictionaryForm'][1:]
+        c['_alt'] = alt_dict_form(c)
     keys = [c[k] for c in chunks for k in ('surface', 'dictionaryForm', 'reading', '_alt')]
-    idx = jmdict_lookup(keys)
+    if idx is None:
+        idx = jmdict_lookup(keys)
+    # a shared idx is used as-is: keys absent from it are simply unmatched,
+    # exactly like a fresh per-sentence lookup (never re-parse per sentence)
     hits = lookupable = 0
     for c in chunks:
         c['gloss'] = None
@@ -364,11 +381,19 @@ def attach_glosses(chunks):
     return hits, lookupable
 
 
+def chunks_lookup_keys(chunks):
+    """All JMdict lookup keys a set of chunks will need (for batch pre-pass)."""
+    keys = []
+    for c in chunks:
+        keys += [c['surface'], c['dictionaryForm'], c['reading'], alt_dict_form(c)]
+    return keys
+
+
 # ------------------------------------------------------------------ driver
 
-def process(sentence: str) -> dict:
+def process(sentence: str, idx=None) -> dict:
     toks, chunks = build_chunks(sentence)
-    hits, lookupable = attach_glosses(chunks)
+    hits, lookupable = attach_glosses(chunks, idx=idx)
     return {
         'sentence': sentence,
         'stats': {
