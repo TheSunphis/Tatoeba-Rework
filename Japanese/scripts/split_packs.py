@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 """Split the everyday-ranked Tatoeba pairs file into packs:
 
-    Tatoeba/
-      Pack 1/  pack1_001.json ... pack1_100.json   <- ranks 1..25,000
-      Pack 2/  ...
+    <out>/
+      Pack 01/ pack01_001.json ... pack01_100.json  <- ranks 1..25,000
+      Pack 02/ ...
       ...
       Pack 10/ (partial: 32 files)
-      Source repository/  manifest.json (written here)
+      manifest.json   (index of every pack & file)
+
+Pack and file names are zero-padded so they sort in true numeric order.
 
 Each file holds 250 UNIQUE Japanese sentences (all English translations of a
 sentence stay together in that file). Ordering: rank 1 = most everyday.
 
 Usage:
     python split_packs.py                       # defaults below
-    python split_packs.py --master X.json --out Tatoeba --per-file 250 --per-pack 100
+    python split_packs.py --master X.json --out . --per-file 250 --per-pack 100
 """
 
 import argparse
@@ -61,9 +63,9 @@ def main():
     packs_meta, file_index = [], []
     for idx, chunk in enumerate(chunks):
         pack_no, file_no = idx // args.per_pack + 1, idx % args.per_pack + 1
-        pack_dir = os.path.join(args.out, f'Pack {pack_no}')
+        pack_dir = os.path.join(args.out, f'Pack {pack_no:02d}')
         os.makedirs(pack_dir, exist_ok=True)
-        fname = f'pack{pack_no}_{file_no:03d}.json'
+        fname = f'pack{pack_no:02d}_{file_no:03d}.json'
         rank_range = [chunk[0]['rank'], chunk[-1]['rank']]
 
         out = {
@@ -93,7 +95,7 @@ def main():
 
     # ---- pack summaries ---------------------------------------------------
     for pack_no in range(1, (len(chunks) - 1) // args.per_pack + 2):
-        pack_files = [c for c in file_index if c['file'].startswith(f'Pack {pack_no}/')]
+        pack_files = [c for c in file_index if c['file'].startswith(f'Pack {pack_no:02d}/')]
         if not pack_files:
             break
         packs_meta.append({

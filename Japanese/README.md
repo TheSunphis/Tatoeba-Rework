@@ -23,24 +23,19 @@ sits at rank 232,778 — the ranking quarantines it automatically.
 
 ```
 Tatoeba-Rework/
-└── Japanese/                             (language pack — this directory)
-    ├── README.md                         (this file)
-    ├── manifest.json                     (machine-readable index of every pack & file)
-    ├── tatoeba_all_pairs_sorted.json.bz2 (master dataset the packs were split from)
-    ├── Pack 1/    pack1_001.json … pack1_100.json     ranks 1–25,000       (most everyday)
-    ├── Pack 2/ … Pack 9/                           ranks 25,001–225,000
-    ├── Pack 10/   pack10_001.json … pack10_032.json ranks 225,001–232,778 (partial)
-    ├── scripts/
-    │   ├── tatoeba_bulk.py       (download + build pairs from Tatoeba exports)
-    │   ├── sort_by_frequency.py  (everyday-commonness scoring & ranking)
-    │   ├── split_packs.py        (packaging into packs/files)
-    │   ├── learner_pipeline.py   (morphemes → learner chunks → JMdict glosses)
-    │   └── build_site.py         (renders a cards JSON into a self-contained HTML explorer)
-    └── examples/
-        ├── everyday_sentence_explorer.html  (rank 5,000 — a typical conversational sentence)
-        ├── sentence_explorer.html           (rank 232,778 — the corpus outlier, stress test)
-        ├── everyday_sentence_cards.json     (pipeline output embedded in the site above)
-        └── largest_sentence_cards.json
+├── README.md         (repo index: language packs + pipeline)
+├── pipeline/         (learner analysis layer — its own project, see ../pipeline/README.md)
+└── Japanese/         (language pack — this directory)
+    ├── README.md     (this file)
+    ├── manifest.json (machine-readable index of every pack & file)
+    ├── tatoeba_all_pairs_sorted.json.bz2  (master dataset the packs were split from)
+    ├── Pack 01/  pack01_001.json … pack01_100.json   ranks 1–25,000       (most everyday)
+    ├── Pack 02/ … Pack 09/                           ranks 25,001–225,000
+    ├── Pack 10/  pack10_001.json … pack10_032.json   ranks 225,001–232,778 (partial)
+    └── scripts/
+        ├── tatoeba_bulk.py       (download + build pairs from Tatoeba exports)
+        ├── sort_by_frequency.py  (everyday-commonness scoring & ranking)
+        └── split_packs.py        (packaging into packs & manifest)
 ```
 
 ## File schema
@@ -120,29 +115,17 @@ Options worth knowing:
 - **Redundancy**: normalized/punctuation variants and near-duplicate
   paraphrases are **not** deduplicated. They're legitimate corpus data.
 
-## The learner pipeline (scripts + examples)
+## Learner pipeline
 
-`learner_pipeline.py` is the analysis layer the `examples/` demos were built
-with:
+The analysis layer that turns these sentences into learner-facing chunk cards
+and interactive explorers lives in its own top-level directory:
+**[../pipeline/](../pipeline/)** — architecture, usage, and roadmap in
+[its README](../pipeline/README.md).
 
-1. **UniDic (via fugashi)** — raw morphological truth: lemmas, POS, conjugation.
-2. **Rule-based chunk merger** — merges morpheme runs into learner-sized
-   chunks (polite/past/negative/volitional endings, 〜たい + negative,
-   〜てください, 〜なくてはならない, について, …) and synthesizes single-card
-   views of merged grammar patterns.
-3. **JMdict lookup** — dictionary-form anchoring, common-word preference
-   (`common` flag, PRI codes), ent_seq dedupe.
+Demos built from this corpus:
 
-`build_site.py` renders any pipeline output JSON into a single self-contained
-HTML explorer (learner view vs machine view, clickable chunks, glosses):
-
-```bash
-python3 scripts/build_site.py examples/everyday_sentence_cards.json out.html
-```
-
-Requires: `fugashi`, `unidic` (`python -m unidic download`), and JMdict_e.gz
-(English-only JMdict from <https://www.edrdg.org/pub/Nihongo/>) in `/tmp`.
-
+- [everyday_sentence_explorer.html](../pipeline/examples/everyday_sentence_explorer.html) — rank 5,000, a typical conversational sentence
+- [sentence_explorer.html](../pipeline/examples/sentence_explorer.html) — rank 232,778, the corpus outlier (stress test)
 ## License & attribution
 
 - **Sentences and translations**: © Tatoeba.org contributors, **CC BY 2.0 FR**
