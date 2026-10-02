@@ -7,7 +7,7 @@ One directory per language, same strict layering everywhere:
 
 | Language pipeline | Toolchain | Status |
 |---|---|---|
-| **[Japanese/](Japanese/)** | UniDic (fugashi) → chunk merger → JMdict | working — demos in [Japanese/examples/](Japanese/examples/) |
+| **[Japanese/](Japanese/)** | UniDic (fugashi) → chunk merger → JMdict → step-4 LLM layer | steps 1–4 done — demos in [Japanese/examples/](Japanese/examples/) |
 
 ## Architecture (all languages)
 
@@ -24,7 +24,7 @@ sentence
 3. dictionary lookup         dictionary-form anchored glosses
   │                          (language-specific lexicon, common-word preference)
   ▼
-4. (roadmap) LLM layer       runs LAST and only here: anchored on the verified
+4. LLM contextual layer       runs LAST and only here: anchored on the verified
                              tokens above, writes contextualMeaning /
                              literalContribution. Never segments from scratch.
 ```

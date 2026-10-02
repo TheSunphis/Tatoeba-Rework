@@ -89,6 +89,8 @@ HTML = r"""<!DOCTYPE html>
   .kv .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
   .kv .v { font-size: 14.5px; }
   .gloss { font-size: 16px; margin-top: 6px; }
+  .step4 { font-size: 14px; margin-top: 6px; padding: 6px 10px; border-radius: 8px;
+           background: #eef2ff; color: #3730a3; }
   .gpbanner { margin-top: 8px; background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c;
               border-radius: 10px; padding: 8px 12px; font-size: 14px; font-weight: 600; }
   table.bt { border-collapse: collapse; margin-top: 10px; width: 100%; }
@@ -220,6 +222,8 @@ function showChunk(i, el) {
     <div class="dhead"><span class="big">${c.surface}</span>
       <span class="read">${c.reading}</span> ${pill(c.type)}${common}</div>
     ${c.grammarPoint ? `<div class="gpbanner">⭐ grammar point: ${c.grammarPoint}</div>` : ''}
+    ${c.contextualMeaning ? `<div class="step4">🎯 <b>in this sentence:</b> ${c.contextualMeaning}</div>` : ''}
+    ${c.literalContribution ? `<div class="step4">🧩 <b>builds:</b> ${c.literalContribution}</div>` : ''}
     <div class="gloss">${c.gloss ? '“' + c.gloss + '”' : '<span style="color:#94a3b8">no dictionary entry</span>'}</div>
     <div class="grid">
       ${kv('dictionary form', c.dictionaryForm)}

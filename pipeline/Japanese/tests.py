@@ -87,6 +87,71 @@ def test_cli_shim_reexports():
         assert hasattr(lp, name), name
 
 
+# ------- step 4: anchored LLM contextual layer -------
+
+def _everyday_result():
+    return lp.process(EVERYDAY, idx=IDX)
+
+
+def test_step4_prompt_is_anchored():
+    prompt = lp.build_prompt(_everyday_result(), ["I'd prefer not to comment on that now."])
+    for needle in (EVERYDAY, 'したくない', 'want to, negative', '〜について',
+                   'VERIFIED', 'EXACTLY', 'punctuation chunks are excluded'):
+        assert needle in prompt, needle
+    assert 'I\'d prefer not to comment on that now.' in prompt
+
+
+def test_step4_parse_applies_and_preserves():
+    r = _everyday_result()
+    surfaces = [c['surface'] for c in r['chunks'] if c['type'] != 'punctuation']
+    reply = json.dumps({'chunks': [
+        {'surface': s, 'contextualMeaning': f'cm-{i}', 'literalContribution': f'lc-{i}'}
+        for i, s in enumerate(surfaces)]})
+    lp.parse_response(r['chunks'], reply)
+    content = [c for c in r['chunks'] if c['type'] != 'punctuation']
+    assert all(c['contextualMeaning'] == f'cm-{i}' for i, c in enumerate(content))
+    assert all(c['literalContribution'] == f'lc-{i}' for i, c in enumerate(content))
+    # punctuation chunks get uniform nulls; deterministic fields untouched
+    assert all(c['contextualMeaning'] is None for c in r['chunks'] if c['type'] == 'punctuation')
+    assert r['chunks'][3]['surface'] == 'それ' and r['chunks'][3]['gloss'] == 'that; it'
+    assert lp.validate_chunks(r['chunks']) == []
+    # markdown-fenced replies are accepted too
+    r2 = _everyday_result()
+    lp.parse_response(r2['chunks'], '```json\n' + reply + '\n```')
+    assert r2['chunks'][0]['contextualMeaning'] == 'cm-0'
+
+
+def test_step4_rejects_bad_responses_atomically():
+    surfaces = [c['surface'] for c in _everyday_result()['chunks']
+                if c['type'] != 'punctuation']
+    bad = [
+        'not json at all',
+        json.dumps({'chunks': [{'surface': s, 'contextualMeaning': 'x',
+                                'literalContribution': 'y'} for s in surfaces[:-1]]}),
+        json.dumps({'chunks': [{'surface': 'WRONG' if i == 0 else s,
+                                'contextualMeaning': 'x',
+                                'literalContribution': 'y'}
+                               for i, s in enumerate(surfaces)]}),
+        json.dumps({'nope': []}),
+    ]
+    for b in bad:
+        r = _everyday_result()
+        try:
+            lp.parse_response(r['chunks'], b)
+            raise AssertionError('should have been rejected: ' + b[:50])
+        except ValueError:
+            pass
+        assert all('contextualMeaning' not in c for c in r['chunks']), 'partial apply leaked'
+
+
+def test_step4_enrich_requires_llm():
+    try:
+        lp.enrich(EVERYDAY)
+        raise AssertionError('enrich should require an llm callable')
+    except ValueError:
+        pass
+
+
 def main():
     tests = [(n, f) for n, f in sorted(globals().items())
              if n.startswith('test_') and callable(f)]

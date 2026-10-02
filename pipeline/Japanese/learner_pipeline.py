@@ -16,9 +16,9 @@ import argparse
 import json
 
 from jlp import (CARD_KEYS, POST_RULES, PRE_RULES, alt_dict_form, attach_glosses,
-                 build_chunks, chunks_lookup_keys, clean_lemma, get_tagger,
-                 jmdict_lookup, kata_to_hira, pick_entry, post, pre, process,
-                 tokens_of, validate_chunks)
+                 build_chunks, build_prompt, chunks_lookup_keys, clean_lemma,
+                 enrich, get_tagger, jmdict_lookup, kata_to_hira, parse_response,
+                 pick_entry, post, pre, process, tokens_of, validate_chunks)
 
 
 def main():

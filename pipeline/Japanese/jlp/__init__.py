@@ -8,6 +8,9 @@ One module per layer:
     lexicon.py   JMdict index                     layer 3a
     glosser.py   gloss attachment                 layer 3b
     cards.py     process() driver + card schema   public API
+    step4.py     anchored LLM contextual layer     layer 4 — runs LAST, adds
+                                                     contextualMeaning +
+                                                     literalContribution only
 
 Stable public API: process, build_chunks, attach_glosses,
 chunks_lookup_keys, jmdict_lookup. The step-4 LLM layer will sit ON TOP of
@@ -19,5 +22,6 @@ from .grammar import pre, post, PRE_RULES, POST_RULES
 from .lexicon import jmdict_lookup
 from .glosser import attach_glosses, alt_dict_form, pick_entry, TYPE_POS_PREF
 from .cards import process, chunks_lookup_keys, CARD_KEYS, validate_chunks
+from .step4 import build_prompt, parse_response, enrich
 
-__version__ = '2.0.0'
+__version__ = '2.1.0'

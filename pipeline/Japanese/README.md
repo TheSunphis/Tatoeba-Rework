@@ -69,6 +69,37 @@ guard it:
 python3 tests.py        # from pipeline/Japanese/ — regression suite (~15 s)
 ```
 
+## Step 4 — the anchored LLM contextual layer
+
+`jlp/step4.py` implements the final layer. The LLM runs LAST, sees the
+verified card deck, and may only add two fields per content chunk:
+
+- `contextualMeaning` — what the chunk means in THIS sentence (fixes
+  first-sense gloss ambiguity)
+- `literalContribution` — how the chunk builds the English translation
+
+Everything else is frozen, and **enforced by code**: the model must echo
+each chunk surface exactly, in deck order. Any attempt to merge, split,
+reorder, rewrite, add or drop chunks makes `parse_response` reject the
+whole response — no partial application ever touches the deck.
+
+Bring your own model — `llm` is any callable `(prompt: str) -> str`
+(OpenAI/Anthropic SDK, a local server, even a human). No network code in
+this package:
+
+```python
+from jlp import process, build_prompt, parse_response, enrich
+
+result = process("今は、それについてコメントしたくない。", idx=idx)
+prompt = build_prompt(result, translations=["I'd prefer not to comment on that now."])
+reply = my_llm(prompt)                      # your callable
+parse_response(result['chunks'], reply)     # validated, then applied
+# or in one call: result = enrich(sentence, translations, idx=idx, llm=my_llm)
+```
+
+`build_site.py` renders both fields in the chunk details panel when
+present. A complete example prompt: `examples/step4_prompt_everyday.txt`.
+
 ## Usage
 
 ```bash
@@ -148,7 +179,7 @@ network, no dependencies.
 
 ## Roadmap
 
-1. step 4 — the anchored LLM contextual layer (the architecture above)
-2. more grammar patterns and idiom merging
+1. more grammar patterns and idiom merging (idioms like 手にする)
+2. batch step-4 enrichment (rate/cost control over many sentences)
 3. output format for full-corpus batch runs (compressed / per-pack enrichment)
 4. Anki deck export from cards JSON

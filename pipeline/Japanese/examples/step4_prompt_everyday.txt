@@ -1,0 +1,41 @@
+You are the step-4 contextual layer of a Japanese learner pipeline.
+Everything below was produced by deterministic tools (UniDic morphological
+analysis + JMdict dictionary lookup) and is VERIFIED: chunk boundaries,
+types, dictionary forms, readings and glosses are FINAL. Do not re-analyze,
+correct, merge, split or reorder them.
+
+Your only job: for each numbered chunk, write two short fields:
+- "contextualMeaning": what this chunk means IN THIS SENTENCE. Pick the
+  sense that fits this context; the JMdict gloss shown may be too generic
+  or wrong for this sentence.
+- "literalContribution": in one short line, how this chunk contributes to
+  the English translation(s) given below.
+
+Rules:
+- Respond with JSON only. No markdown fences, no commentary.
+- Echo each "surface" EXACTLY as given, in the same order, one entry per
+  numbered chunk (punctuation chunks are excluded).
+- One line per field, in English, at most ~120 characters.
+- Use null for a field only if the chunk genuinely adds nothing.
+- Never modify anything else about the chunks.
+
+Response format:
+{"chunks": [{"surface": "...", "contextualMeaning": "...", "literalContribution": "..."}, ...]}
+
+SENTENCE: 今は、それについてコメントしたくない。
+
+TRANSLATIONS (reference, for literalContribution):
+- I'd prefer not to comment on that now.
+- I don't want to comment on that right now.
+
+VERIFIED CHUNKS (6, punctuation excluded):
+[0] 今 「いま」 noun — now; the present time
+[1] は particle — indicates sentence topic; indicates contrast with another option (stated or unstated)
+[2] それ pronoun — that; it
+[3] について grammar point GRAMMAR 〜について (about, regarding) — about; on
+    = に(に) + つい(つく) + て(て)
+[4] コメント 「こめんと」 noun — comment
+[5] したくない verb dict する [want to, negative] — to do; to carry out
+    = し(する) + たく(たい) + ない(無い)
+
+Write the two fields for all 6 chunks now.
