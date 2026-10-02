@@ -19,8 +19,11 @@ scripts.
 ## Pipeline
 
 **[pipeline/](pipeline/)** — the learner analysis layer (under active
-development): UniDic morphemes → rule-based chunk merger → JMdict glosses →
-interactive HTML explorers. Architecture, usage, and roadmap in
-**[pipeline/README.md](pipeline/README.md)**. Demos:
-[everyday sentence (rank 5,000)](pipeline/examples/everyday_sentence_explorer.html)
-· [corpus outlier (rank 232,778)](pipeline/examples/sentence_explorer.html).
+development): one directory per language, same strict layering — morphology →
+chunk merger → dictionary glosses → (roadmap) anchored LLM layer. See
+**[pipeline/README.md](pipeline/README.md)**.
+
+- **[pipeline/Japanese/](pipeline/Japanese/)** — UniDic → chunk merger →
+  JMdict → interactive HTML explorers. Demos:
+  [everyday sentence, rank 5,000](pipeline/Japanese/examples/everyday_sentence_explorer.html)
+  · [corpus outlier, rank 232,778](pipeline/Japanese/examples/sentence_explorer.html)

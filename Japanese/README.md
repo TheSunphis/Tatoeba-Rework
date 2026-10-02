@@ -24,7 +24,7 @@ sits at rank 232,778 — the ranking quarantines it automatically.
 ```
 Tatoeba-Rework/
 ├── README.md         (repo index: language packs + pipeline)
-├── pipeline/         (learner analysis layer — its own project, see ../pipeline/README.md)
+├── pipeline/         (learner analysis layer; the Japanese pipeline lives in ../pipeline/Japanese/)
 └── Japanese/         (language pack — this directory)
     ├── README.md     (this file)
     ├── manifest.json (machine-readable index of every pack & file)
@@ -119,13 +119,13 @@ Options worth knowing:
 
 The analysis layer that turns these sentences into learner-facing chunk cards
 and interactive explorers lives in its own top-level directory:
-**[../pipeline/](../pipeline/)** — architecture, usage, and roadmap in
-[its README](../pipeline/README.md).
+**[../pipeline/Japanese/](../pipeline/Japanese/)** — usage, card schema, and
+roadmap in [its README](../pipeline/Japanese/README.md).
 
 Demos built from this corpus:
 
-- [everyday_sentence_explorer.html](../pipeline/examples/everyday_sentence_explorer.html) — rank 5,000, a typical conversational sentence
-- [sentence_explorer.html](../pipeline/examples/sentence_explorer.html) — rank 232,778, the corpus outlier (stress test)
+- [everyday_sentence_explorer.html](../pipeline/Japanese/examples/everyday_sentence_explorer.html) — rank 5,000, a typical conversational sentence
+- [sentence_explorer.html](../pipeline/Japanese/examples/sentence_explorer.html) — rank 232,778, the corpus outlier (stress test)
 ## License & attribution
 
 - **Sentences and translations**: © Tatoeba.org contributors, **CC BY 2.0 FR**
