@@ -30,6 +30,45 @@ sentence
                                literalContribution. Never segments from scratch.
 ```
 
+**Module map** — the pipeline is the `jlp` package (one module per layer),
+with `learner_pipeline.py` as a thin, backwards-compatible CLI shim
+(`import learner_pipeline` still works; `batch_run.py` and `build_site.py`
+are unchanged):
+
+| module | layer | owns |
+|---|---|---|
+| `jlp/tagger.py` | 1 | shared fugashi tagger, raw token extraction, kata-hira conversion |
+| `jlp/grammar.py` | 2 | **grammar pattern rule registry** — where new rules go |
+| `jlp/merger.py` | 2 | chunk merger loop + card decoration |
+| `jlp/lexicon.py` | 3a | JMdict index (path overridable via `JMDICT_E` env var) |
+| `jlp/glosser.py` | 3b | entry choice: dict-form anchoring, kanji swap, POS preference |
+| `jlp/cards.py` | driver | `process()`, batch key pre-pass, card schema + `validate_chunks()` |
+
+### Adding a grammar rule
+
+Rules are registered, not inlined — one small function in `jlp/grammar.py`
+and the merger picks it up automatically:
+
+```python
+@pre                                    # tried before head-token handling
+def toki_ni(toks, i, n):
+    # 〜時に (when ...): 時 + に
+    if toks[i]['lemma'] == '時' and i + 1 < n and toks[i+1]['s'] == 'に':
+        return i + 2, {'type': 'grammar point',
+                       'grammarPoint': '〜時に (when ...)',
+                       'aux': [], 'te': None, 'compound': False}
+    return None
+```
+
+`@post` rules instead extend the chunk being built after auxiliary
+absorption (`absorb(morph, aux, toks, i, n) -> new_i | None`) — see the
+`jlp/grammar.py` docstring for the full contract. After adding a rule,
+guard it:
+
+```bash
+python3 tests.py        # from pipeline/Japanese/ — regression suite (~15 s)
+```
+
 ## Usage
 
 ```bash
@@ -38,6 +77,9 @@ python3 pipeline/Japanese/learner_pipeline.py "今は、それについてコメ
 
 # 2. self-contained interactive HTML explorer from the cards
 python3 pipeline/Japanese/build_site.py cards.json explorer.html
+
+# 3. regression suite (from pipeline/Japanese/)
+python3 tests.py
 ```
 
 Requirements: Python 3, `fugashi` + `unidic`

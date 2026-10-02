@@ -38,10 +38,11 @@ Rules of the house — they apply to every language pipeline:
 
 ## Adding a pipeline
 
-Follow the pattern in [Japanese/](Japanese/): pick a segmenter and a lexicon
-for the language, write its chunk-merger grammar patterns, and reuse
-`build_site.py` from an existing pipeline — it renders any cards JSON in the
-same schema (type colors are defined at the top of the file, per language).
+Follow the pattern in [Japanese/](Japanese/): a small package
+(`jlp/` — one module per layer, grammar rules as a `@pre`/`@post` registry),
+a thin CLI shim, `tests.py` for regressions, and `build_site.py` which
+renders any cards JSON in the same schema (type colors are defined at the
+top of the file, per language).
 
 ## Roadmap
 
